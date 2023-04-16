@@ -11,11 +11,19 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
+		//crouching
+		public CharacterController PlayerHeight;
+		public float normalHeight, crouchHeight;
+
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
 		public float SprintSpeed = 6.0f;
+
+		//crouch speed
+		public float CrouchSpeed = 2.0f;
+
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -115,6 +123,14 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				PlayerHeight.height = crouchHeight;
+			}
+			if (Input.GetKeyUp(KeyCode.C))
+			{
+				PlayerHeight.height = normalHeight;
+			}
 		}
 
 		private void LateUpdate()
@@ -156,11 +172,16 @@ namespace StarterAssets
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
+			// same as above but for crouch input
+			float targetspeed = _input.crouch ? CrouchSpeed : MoveSpeed;
+
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
 			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+
+			if (_input.move == Vector2.zero) targetspeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -181,6 +202,18 @@ namespace StarterAssets
 			else
 			{
 				_speed = targetSpeed;
+			}
+
+			if (currentHorizontalSpeed < targetspeed - speedOffset || currentHorizontalSpeed > targetspeed + speedOffset)
+			{
+				_speed = Mathf.Lerp(currentHorizontalSpeed, targetspeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+
+				// round speed to 3 decimal places
+				_speed = Mathf.Round(_speed * 1000f) / 1000f;
+			}
+			else
+			{
+				_speed = targetspeed;
 			}
 
 			// normalise input direction
