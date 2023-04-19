@@ -126,10 +126,12 @@ namespace StarterAssets
 			if (Input.GetKeyDown(KeyCode.C))
 			{
 				PlayerHeight.height = crouchHeight;
+				MoveSpeed = CrouchSpeed;
 			}
 			if (Input.GetKeyUp(KeyCode.C))
 			{
 				PlayerHeight.height = normalHeight;
+				MoveSpeed = 4.0f;
 			}
 		}
 
@@ -190,7 +192,7 @@ namespace StarterAssets
 			float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
 			// accelerate or decelerate to target speed
-			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetspeed + speedOffset)
 			{
 				// creates curved result rather than a linear one giving a more organic speed change
 				// note T in Lerp is clamped, so we don't need to clamp our speed
@@ -199,13 +201,8 @@ namespace StarterAssets
 				// round speed to 3 decimal places
 				_speed = Mathf.Round(_speed * 1000f) / 1000f;
 			}
-			else
-			{
-				_speed = targetSpeed;
-			}
-
-			if (currentHorizontalSpeed < targetspeed - speedOffset || currentHorizontalSpeed > targetspeed + speedOffset)
-			{
+			else if(currentHorizontalSpeed < targetspeed - speedOffset || currentHorizontalSpeed > targetspeed + speedOffset)
+            {
 				_speed = Mathf.Lerp(currentHorizontalSpeed, targetspeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
 
 				// round speed to 3 decimal places
@@ -213,8 +210,21 @@ namespace StarterAssets
 			}
 			else
 			{
-				_speed = targetspeed;
+				_speed = targetSpeed;
+
 			}
+
+			//if (currentHorizontalSpeed < targetspeed - speedOffset || currentHorizontalSpeed > targetspeed + speedOffset)
+			//{
+			//	_speed = Mathf.Lerp(currentHorizontalSpeed, targetspeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+			//
+				// round speed to 3 decimal places
+			//	_speed = Mathf.Round(_speed * 1000f) / 1000f;
+			//}
+			//else
+			//{
+			//	_speed = targetspeed;
+			//}
 
 			// normalise input direction
 			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
