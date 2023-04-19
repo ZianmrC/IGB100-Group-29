@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1336515163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336515164}
+  m_Layer: 0
+  m_Name: EnemyGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336515164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336515163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.467, y: 0, z: 0.602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4664746642791720594}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4664746641659512659
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +357,7 @@ GameObject:
   - component: {fileID: 4664746642791720593}
   - component: {fileID: 4664746642791720597}
   - component: {fileID: 4664746642791720596}
+  - component: {fileID: 388869172}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -344,7 +376,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1336515164}
   m_Father: {fileID: 4664746643143472482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -428,11 +461,13 @@ MonoBehaviour:
   - {fileID: 4664746642439017639}
   - {fileID: 4664746641659512658}
   - {fileID: 4664746642537485079}
-  attackRange: 5
-  normalMoveSpeed: 3
+  attackRange: 10
+  normalMoveSpeed: 2
   detectedMoveSpeedDelta: 3
   normalAngularSpeed: 120
-  detectedAngularSpeedDelta: 180
+  detectedAngularSpeedDelta: 60
+  canAttack: 0
+  playerShootSpot: {fileID: 0}
 --- !u!195 &4664746642791720597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -470,6 +505,22 @@ MonoBehaviour:
   fieldOfVisionAngle: 60
   detectionDistance: 14
   isPlayerDetected: 0
+--- !u!114 &388869172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664746642791720595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36345d9d7a85ef74abe222fcebaeb269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1523246186493009064, guid: 10f3a0bdd4bad194b901f82489fdc4a3, type: 3}
+  projectileSpawnPoint: {fileID: 1336515164}
+  projectileSpeed: 40
+  fireRate: 0.8
 --- !u!1 &4664746643143472483
 GameObject:
   m_ObjectHideFlags: 0

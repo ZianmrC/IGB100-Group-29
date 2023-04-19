@@ -37,18 +37,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         // Check if the enemy is within attack range of the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= attackRange)
-        {
-            canAttack = true;
-            // Stop moving but still face towards the player
-            navMeshAgent.isStopped = true;
-            transform.LookAt(playerShootSpot);
-        }
-        else
-        {
-            canAttack = false;
-            navMeshAgent.isStopped = false; // Resume movement
-        }
 
         if (enemyVision.isPlayerDetected)
         {
@@ -57,6 +45,13 @@ public class EnemyPatrol : MonoBehaviour
             navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
             Debug.Log("Player detected");
             navMeshAgent.SetDestination(player.position);
+            if (enemyVision.isPlayerDetected == true )//enemyVision.inSight == true) this code for some reason bugs the enemy's code
+            {
+                canAttack = true;
+                // Stop moving but still face towards the player
+                navMeshAgent.isStopped = true;
+                transform.LookAt(playerShootSpot);
+            }
         }
         else
         {
@@ -65,6 +60,8 @@ public class EnemyPatrol : MonoBehaviour
             navMeshAgent.angularSpeed = normalAngularSpeed;
             Patrolling();
             Debug.Log("Enemy patrolling");
+            canAttack = false;
+            navMeshAgent.isStopped = false; // Resume movement
         }
     }
 

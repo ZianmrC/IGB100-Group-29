@@ -22,13 +22,13 @@ public class EnemyRangedAttack : MonoBehaviour
     void Update()
     {
         // Check if the enemy can attack
-        if (enemyPatrol != null && enemyPatrol.canAttack)
+        if (enemyPatrol != null)
         {
             // Update timeSinceLastAttack
             timeSinceLastAttack += Time.deltaTime;
 
             // Check if enough time has elapsed since last attack
-            if (timeSinceLastAttack >= fireRate)
+            if (timeSinceLastAttack >= fireRate && enemyPatrol.canAttack == true)
             {
                 // Instantiate the projectile
                 InstantiateProjectile();
