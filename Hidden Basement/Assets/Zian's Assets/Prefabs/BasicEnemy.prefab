@@ -429,10 +429,10 @@ MonoBehaviour:
   - {fileID: 4664746641659512658}
   - {fileID: 4664746642537485079}
   attackRange: 5
-  normalMoveSpeed: 2
-  detectedMoveSpeedDelta: 2
+  normalMoveSpeed: 3
+  detectedMoveSpeedDelta: 3
   normalAngularSpeed: 120
-  detectedAngularSpeedDelta: 120
+  detectedAngularSpeedDelta: 180
 --- !u!195 &4664746642791720597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -467,8 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a761542c63bca047ab818676952b8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfVisionAngle: 70
-  detectionDistance: 12
+  fieldOfVisionAngle: 60
+  detectionDistance: 14
   isPlayerDetected: 0
 --- !u!1 &4664746643143472483
 GameObject:
