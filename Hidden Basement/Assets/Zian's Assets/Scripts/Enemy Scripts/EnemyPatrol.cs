@@ -13,7 +13,8 @@ public class EnemyPatrol : MonoBehaviour
     private NavMeshAgent navMeshAgent; // Reference to NavMeshAgent component
     private Transform player; // Reference to player object
     private EnemyVision enemyVision; // Reference to EnemyVision script
-    private bool canAttack; // Whether the enemy can attack the player or not
+    public bool canAttack; // Whether the enemy can attack the player or not
+    public Transform playerShootSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,7 @@ public class EnemyPatrol : MonoBehaviour
             canAttack = true;
             // Stop moving but still face towards the player
             navMeshAgent.isStopped = true;
-            transform.LookAt(player);
+            transform.LookAt(playerShootSpot);
         }
         else
         {
