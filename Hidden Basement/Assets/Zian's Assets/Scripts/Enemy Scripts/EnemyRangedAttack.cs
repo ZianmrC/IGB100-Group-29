@@ -45,10 +45,10 @@ public class EnemyRangedAttack : MonoBehaviour
         }
     }
 
-    // Instantiate the projectile towards the player
+    // Instantiate the projectile towards player
     void InstantiateProjectile()
     {
-        // Calculate the direction towards the player
+        // Calculate the direction towards player
         Vector3 direction = (GameObject.Find("PlayerShootSpot").transform.position - projectileSpawnPoint.position).normalized;
 
         // Instantiate the projectile and set its direction and speed
@@ -62,7 +62,7 @@ public class EnemyRangedAttack : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the colliding object has the "Bullet" tag
+        // Check if colliding object for "Bullet" tag
         if (collision.gameObject.CompareTag("Bullet"))
         {
             // Destroy the bullet upon collision with any object
