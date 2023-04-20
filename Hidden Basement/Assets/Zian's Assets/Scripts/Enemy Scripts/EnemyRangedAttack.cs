@@ -6,14 +6,17 @@ public class EnemyRangedAttack : MonoBehaviour
     public Transform projectileSpawnPoint; // Spawn point of the projectile
     public float projectileSpeed = 10.0f; // Speed of the projectile
     public float fireRate = 1.0f; // Rate of fire
+    public float damage; //Damage dealt to player
     private float timeSinceLastAttack; // Time elapsed since last attack
     private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Get the reference to the EnemyPatrol script
+        // Get the references to the other scripts used
         enemyPatrol = GetComponent<EnemyPatrol>();
+        gameManager = GetComponent<GameManager>();
         // Initialize timeSinceLastAttack to fireRate to allow immediate attack
         timeSinceLastAttack = fireRate;
     }
@@ -64,8 +67,7 @@ public class EnemyRangedAttack : MonoBehaviour
         {
             // Destroy the bullet upon collision with any object
             Destroy(collision.gameObject);
+            gameManager.PlayerTakeDamage();
         }
     }
-
-
 }

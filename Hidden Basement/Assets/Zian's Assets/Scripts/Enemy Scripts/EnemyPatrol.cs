@@ -45,7 +45,7 @@ public class EnemyPatrol : MonoBehaviour
             navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
             Debug.Log("Player detected");
             navMeshAgent.SetDestination(player.position);
-            if (enemyVision.isPlayerDetected == true )//enemyVision.inSight == true) this code for some reason bugs the enemy's code
+            if (enemyVision.isPlayerDetected)// && enemyVision.inSight)
             {
                 canAttack = true;
                 // Stop moving but still face towards the player
