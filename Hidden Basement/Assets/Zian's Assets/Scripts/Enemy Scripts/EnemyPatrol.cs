@@ -43,7 +43,6 @@ public class EnemyPatrol : MonoBehaviour
             // If player is detected, move towards the player with increased speed and angular speed
             navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
             navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
-            Debug.Log("Player detected");
             navMeshAgent.SetDestination(player.position);
             if (enemyVision.isPlayerDetected)// && enemyVision.inSight)
             {
@@ -59,7 +58,6 @@ public class EnemyPatrol : MonoBehaviour
             navMeshAgent.speed = normalMoveSpeed;
             navMeshAgent.angularSpeed = normalAngularSpeed;
             Patrolling();
-            Debug.Log("Enemy patrolling");
             canAttack = false;
             navMeshAgent.isStopped = false; // Resume movement
         }

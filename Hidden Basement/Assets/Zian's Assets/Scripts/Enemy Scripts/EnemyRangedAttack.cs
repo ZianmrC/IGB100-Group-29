@@ -68,6 +68,7 @@ public class EnemyRangedAttack : MonoBehaviour
             // Destroy the bullet upon collision with any object
             Destroy(collision.gameObject);
             gameManager.PlayerTakeDamage();
+            Debug.Log("Player has taken damage");
         }
     }
 }

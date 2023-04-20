@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void PlayerTakeDamage()
     {
         health--;
+        Debug.Log($"Health is {health}.");
     }
 
     // Update the screen color based on the player's health
