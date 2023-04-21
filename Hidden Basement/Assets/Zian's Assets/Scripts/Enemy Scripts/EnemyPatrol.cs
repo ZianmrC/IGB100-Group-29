@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemyPatrol : MonoBehaviour
 {
     public Transform[] patrolPoints; // Array of patrol points
-    public float attackRange; // Minimum range for attacking the player
+    private float attackRange; // Minimum range for attacking the player
     public float normalMoveSpeed = 2.0f; // Normal movement speed of the enemy
     public float detectedMoveSpeedDelta = 2.0f; // Delta movement speed of the enemy when player is detected
     public float normalAngularSpeed = 120.0f; // Normal angular speed of the enemy
@@ -26,54 +26,66 @@ public class EnemyPatrol : MonoBehaviour
         SetTarget(patrolPoints[currentPatrolPointIndex]);
 
         // Replace "player" with your actual player object reference
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("PlayerCapsule").transform;
 
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
+        attackRange = enemyVision.shootDetectionDistance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Check if the enemy is within attack range of the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        if (enemyVision.isPlayerDetected)
+        if (distanceToPlayer <= attackRange)
         {
-            // If player is detected, move towards the player with increased speed and angular speed
-            navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
-            navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
-            navMeshAgent.SetDestination(player.position);
-            if (enemyVision.isPlayerDetected)// && enemyVision.inSight)
-            {
-                canAttack = true;
-                // Stop moving but still face towards the player
-                navMeshAgent.isStopped = true;
-                transform.LookAt(playerShootSpot);
-            }
+            // If player is within attack range, stop moving but still face towards the player
+            canAttack = true;
+            navMeshAgent.isStopped = true;
+            transform.LookAt(playerShootSpot);
         }
         else
         {
-            // If player is not detected, continue patrolling with normal speed and angular speed
-            navMeshAgent.speed = normalMoveSpeed;
-            navMeshAgent.angularSpeed = normalAngularSpeed;
-            Patrolling();
+            // If player is not within attack range
+            if (enemyVision.isPlayerDetected)
+            {
+                // If player is detected, move towards the player with increased speed and angular speed
+                navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
+                navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
+                navMeshAgent.SetDestination(player.position);
+            }
+            else
+            {
+                // If player is not detected, continue patrolling with normal speed and angular speed
+                navMeshAgent.speed = normalMoveSpeed;
+                navMeshAgent.angularSpeed = normalAngularSpeed;
+                Patrolling(); // Call the Patrolling() method to handle patrol behavior
+            }
+
             canAttack = false;
             navMeshAgent.isStopped = false; // Resume movement
         }
-    }
 
+        // Check if the enemy is not within attack range and player is not detected, then resume patrolling
+        if (distanceToPlayer > attackRange && !enemyVision.isPlayerDetected)
+        {
+            Patrolling();
+        }
+    }
     // Method for handling the patrolling behavior
     void Patrolling()
     {
-        // Check if the enemy has reached the current target
-        if (navMeshAgent.remainingDistance < 0.1f)
+        if(navMeshAgent.remainingDistance < 0.1f)
         {
             // Set the next target
-            currentPatrolPointIndex = (currentPatrolPointIndex + 1) % patrolPoints.Length;
+            Debug.Log($"Patrol point {currentPatrolPointIndex} reached.");
+            currentPatrolPointIndex = (currentPatrolPointIndex + 1);
+            if (currentPatrolPointIndex >= patrolPoints.Length) currentPatrolPointIndex = 0;
+            Debug.Log($"Moving to patrol point {currentPatrolPointIndex}");
             SetTarget(patrolPoints[currentPatrolPointIndex]);
         }
     }
+
 
     // Set the target for the enemy to move towards
     void SetTarget(Transform target)

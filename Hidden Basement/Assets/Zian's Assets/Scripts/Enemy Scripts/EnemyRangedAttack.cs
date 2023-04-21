@@ -49,7 +49,7 @@ public class EnemyRangedAttack : MonoBehaviour
     void InstantiateProjectile()
     {
         // Calculate the direction towards player
-        Vector3 direction = (GameObject.Find("PlayerShootSpot").transform.position - projectileSpawnPoint.position).normalized;
+        Vector3 direction = (GameObject.Find("PlayerCapsule").transform.position - projectileSpawnPoint.position).normalized;
 
         // Instantiate the projectile and set its direction and speed
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);

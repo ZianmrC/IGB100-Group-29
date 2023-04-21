@@ -354,9 +354,9 @@ GameObject:
   - component: {fileID: 4664746642791720598}
   - component: {fileID: 4664746642791720599}
   - component: {fileID: 4664746642791720592}
+  - component: {fileID: 4664746642791720596}
   - component: {fileID: 4664746642791720593}
   - component: {fileID: 4664746642791720597}
-  - component: {fileID: 4664746642791720596}
   - component: {fileID: 388869172}
   m_Layer: 0
   m_Name: Enemy
@@ -445,6 +445,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4664746642791720596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664746642791720595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a761542c63bca047ab818676952b8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfVisionAngle: 60
+  detectionDistance: 14
+  isPlayerDetected: 0
+  inSight: 0
+  shootPoint: {fileID: 0}
+  shootDetectionDistance: 10
 --- !u!114 &4664746642791720593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +484,7 @@ MonoBehaviour:
   detectedMoveSpeedDelta: 3
   normalAngularSpeed: 120
   detectedAngularSpeedDelta: 60
+  player: {fileID: 0}
   canAttack: 0
   playerShootSpot: {fileID: 0}
 --- !u!195 &4664746642791720597
@@ -490,21 +509,6 @@ NavMeshAgent:
   m_BaseOffset: 1.0725888
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4664746642791720596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4664746642791720595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a761542c63bca047ab818676952b8c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fieldOfVisionAngle: 60
-  detectionDistance: 14
-  isPlayerDetected: 0
 --- !u!114 &388869172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +525,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 1336515164}
   projectileSpeed: 40
   fireRate: 0.8
+  damage: 0
 --- !u!1 &4664746643143472483
 GameObject:
   m_ObjectHideFlags: 0

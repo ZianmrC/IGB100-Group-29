@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
-    public float fieldOfVisionAngle = 60.0f; // Field of vision angle in degrees
-    public float detectionDistance = 10.0f; // Maximum detection distance of the enemy
+    public float fieldOfVisionAngle; // Field of vision angle in degrees
+    public float detectionDistance; // Maximum detection distance of the enemy
     public bool isPlayerDetected = false;
     public bool inSight = false; // New bool variable to detect if there is no obstruction between player and enemy
 
     public Transform shootPoint; // Reference to the enemy's shoot point
-    public float shootDetectionDistance = 10.0f; // Maximum detection distance for shooting
+    public float shootDetectionDistance; // Maximum detection distance for shooting
 
     private Transform player; // Reference to the player's transform
 
@@ -35,6 +35,7 @@ public class EnemyVision : MonoBehaviour
                 {
                     // Player is within field of vision and in sight, set both isPlayerDetected and inSight to true
                     isPlayerDetected = true;
+                    inSight = true; // Set inSight to true
                     Debug.Log("Player detected");
                 }
                 else
@@ -48,28 +49,29 @@ public class EnemyVision : MonoBehaviour
             {
                 // Player is within field of vision and in sight, set both isPlayerDetected and inSight to true
                 isPlayerDetected = true;
+                inSight = true; // Set inSight to true
+            }
 
-                // Check if there is no obstruction between enemy's shoot point and player
-                Vector3 directionToShootPoint = player.position - shootPoint.position;
-                if (Physics.Raycast(shootPoint.position, directionToShootPoint, out hit, shootDetectionDistance))
-                {
-                    if (hit.transform.CompareTag("Player"))
-                    {
-                        // Player is within shoot detection distance and in sight of the shoot point, set inSight to true
-                        inSight = true;
-                        Debug.Log("Player in sight");
-                    }
-                    else
-                    {
-                        // Player is obstructed from the shoot point, set inSight to false
-                        inSight = false;
-                    }
-                }
-                else
+            // Check if there is no obstruction between enemy's shoot point and player
+            Vector3 directionToShootPoint = player.position - shootPoint.position;
+            if (Physics.Raycast(shootPoint.position, directionToShootPoint, out hit, shootDetectionDistance))
+            {
+                if (hit.transform.CompareTag("Player"))
                 {
                     // Player is within shoot detection distance and in sight of the shoot point, set inSight to true
                     inSight = true;
+                    Debug.Log("Player in sight");
                 }
+                else
+                {
+                    // Player is obstructed from the shoot point, set inSight to false
+                    inSight = false;
+                }
+            }
+            else
+            {
+                // Player is within shoot detection distance and in sight of the shoot point, set inSight to true
+                inSight = true;
             }
         }
         else
@@ -78,16 +80,17 @@ public class EnemyVision : MonoBehaviour
             isPlayerDetected = false;
             inSight = false;
         }
+    }
+    // Visualize the field of vision in the scene view
+    void OnDrawGizmosSelected()
+    {
+        // Draw the detection cone using Gizmos
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
+        Gizmos.DrawRay(transform.position, transform.forward * detectionDistance);
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
 
-        // Visualize the field of vision in the scene view
-        void OnDrawGizmosSelected()
-        {
-            // Draw the detection cone using Gizmos
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
-            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
-            Gizmos.DrawRay(transform.position, transform.forward * detectionDistance);
-            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
-        }
+
     }
 }
