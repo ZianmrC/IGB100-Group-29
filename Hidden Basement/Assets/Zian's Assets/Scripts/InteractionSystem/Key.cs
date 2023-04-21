@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : MonoBehaviour, iInteractable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private string _prompt;
 
-    // Update is called once per frame
-    void Update()
+
+
+    public string InterationPrompt => _prompt;
+
+    public bool Interact(Interactor interactor)
     {
-        
+        Debug.Log("You have key");
+        return true;
     }
 }
