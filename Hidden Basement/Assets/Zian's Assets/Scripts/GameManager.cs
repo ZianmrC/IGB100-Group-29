@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Manage Damage Interactions
-    private int health = 5;
-    public GameObject player;
-
     // Reference to the UI Image representing the screen overlay
     public Image screenOverlay;
 
@@ -17,6 +13,12 @@ public class GameManager : MonoBehaviour
 
     // Color when player has low health
     public Color lowHealthColor = Color.red;
+
+    [HideInInspector]
+    // Manage Damage Interactions
+    public float maxHealth = 5;
+    public float currentHealth;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +29,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentHealth);
         // Call the UpdateScreen method to update the screen color based on the player's health
         UpdateScreen();
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Destroy(player);
         }
@@ -38,15 +41,15 @@ public class GameManager : MonoBehaviour
     // Remove "public" before the method declaration, and remove the semicolon after the method name
     public void PlayerTakeDamage()
     {
-        health--;
-        Debug.Log($"Health is {health}.");
+        currentHealth--;
+        Debug.Log($"Health is {currentHealth}.");
     }
 
     // Update the screen color based on the player's health
     void UpdateScreen()
     {
         // Calculate the normalized health value (between 0 and 1)
-        float normalizedHealth = (float)health / 5; // Assuming max health is 5
+        float normalizedHealth = (float)currentHealth / 5; // Assuming max health is 5
 
         // Update the color and alpha value of the screen overlay based on the normalized health value
         Color screenColor = Color.Lerp(lowHealthColor, fullHealthColor, normalizedHealth);
