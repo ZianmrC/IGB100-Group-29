@@ -15,7 +15,7 @@ public class EnemyPatrol : MonoBehaviour
     private Transform player; // Reference to player object
     private EnemyVision enemyVision; // Reference to EnemyVision script
     public bool canAttack; // Whether the enemy can attack the player or not
-    public Transform playerShootSpot;
+    private Transform playerShootSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,7 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
         attackRange = enemyVision.shootDetectionDistance;
+        playerShootSpot = GameObject.Find("InteractionPoint").transform;
     }
 
     void Update()
@@ -80,10 +81,8 @@ public class EnemyPatrol : MonoBehaviour
         if (navMeshAgent.remainingDistance < 0.1f && !isPatrolling)
         {
             // Set the next target
-            Debug.Log($"Patrol point {currentPatrolPointIndex} reached.");
             currentPatrolPointIndex = (currentPatrolPointIndex + 1);
             if (currentPatrolPointIndex >= patrolPoints.Length) currentPatrolPointIndex = 0;
-            Debug.Log($"Moving to patrol point {currentPatrolPointIndex}");
             SetTarget(patrolPoints[currentPatrolPointIndex]);
             isPatrolling = true; // Set the boolean flag to true to indicate that patrolling is in progress
         }

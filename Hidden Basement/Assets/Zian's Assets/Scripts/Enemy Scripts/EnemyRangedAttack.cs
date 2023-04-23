@@ -9,14 +9,13 @@ public class EnemyRangedAttack : MonoBehaviour
     public float damage; //Damage dealt to player
     private float timeSinceLastAttack; // Time elapsed since last attack
     private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
-    GameManager gameManager;
+    public float offsetTarget;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the references to the other scripts used
         enemyPatrol = GetComponent<EnemyPatrol>();
-        gameManager = GetComponent<GameManager>();
         // Initialize timeSinceLastAttack to fireRate to allow immediate attack
         timeSinceLastAttack = fireRate;
     }
@@ -45,30 +44,32 @@ public class EnemyRangedAttack : MonoBehaviour
         }
     }
 
-    // Instantiate the projectile towards player
     void InstantiateProjectile()
     {
         // Calculate the direction towards player
-        Vector3 direction = (GameObject.Find("PlayerCapsule").transform.position - projectileSpawnPoint.position).normalized;
+        Vector3 targetPosition = GameObject.Find("PlayerCapsule").transform.position;
+        Vector3 targetPositionWithOffset = new Vector3(targetPosition.x, targetPosition.y + offsetTarget, targetPosition.z); // Add an offset of 0.5 units in the y-axis
+        Vector3 direction = (targetPositionWithOffset - projectileSpawnPoint.position).normalized;
 
         // Instantiate the projectile and set its direction and speed
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         projectileRigidbody.velocity = direction * projectileSpeed;
 
+        Physics.IgnoreCollision(projectile.GetComponent<Collider>(), GetComponent<Collider>());
+
         // Destroy the projectile after a certain time
         Destroy(projectile, 5.0f); // Change 5.0f to the desired time for projectile destruction
     }
 
+
     void OnCollisionEnter(Collision collision)
     {
-        // Check if colliding object for "Bullet" tag
-        if (collision.gameObject.CompareTag("Bullet"))
+        // Check if colliding object has tag 'Environment' or 'Player'
+        if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Player"))
         {
-            // Destroy the bullet upon collision with any object
-            Destroy(collision.gameObject);
-            gameManager.PlayerTakeDamage();
-            Debug.Log("Player has taken damage");
+            // Destroy the projectile upon collision with 'Environment' or 'Player'
+            Destroy(gameObject);
         }
     }
 }

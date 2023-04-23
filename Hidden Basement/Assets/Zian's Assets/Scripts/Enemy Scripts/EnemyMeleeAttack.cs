@@ -9,14 +9,12 @@ public class EnemyMeleeAttack : MonoBehaviour
     public float damage; //Damage dealt to player
     private float timeSinceLastAttack; // Time elapsed since last attack
     private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
-    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the references to the other scripts used
         enemyPatrol = GetComponent<EnemyPatrol>();
-        gameManager = GetComponent<GameManager>();
         // Initialize timeSinceLastAttack to fireRate to allow immediate attack
         timeSinceLastAttack = fireRate;
     }
@@ -67,7 +65,6 @@ public class EnemyMeleeAttack : MonoBehaviour
         {
             // Destroy the bullet upon collision with any object
             Destroy(collision.gameObject);
-            gameManager.PlayerTakeDamage();
             Debug.Log("Player has taken damage");
         }
     }
