@@ -13,6 +13,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Call the FadeIn method to start with a fade-in effect when the scene starts
         FadeIn();
+        Debug.Log("test");
         playerhealth = FindObjectOfType<PlayerHealth>();
         Debug.Log(playerhealth.switchscene);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,24 +15,21 @@ public class PlayerHealth : MonoBehaviour
 
     public SceneTransitionManager sceneTransitionManager;
     public bool switchscene = false; //Bool to initiate deathscreen transition once true
+    public Image fadeOverlay; // Reference to the Image component of the FadeOverlay object
+    public float fadeDuration = 1.0f; // Duration of the fade-in effect in seconds
 
-    // Start is called before the first frame update
-    void Awake()
+    private float currentFadeTime = 0.0f; // Time elapsed since the fade-in effect started
+    void Start()
     {
-        healthBar = FindObjectOfType<HealthBarScript>();
-        player = GameObject.Find("Capsule");
+        fadeOverlay.gameObject.SetActive(false);
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        Debug.Log(currentHealth);
-        timeSinceLastRegen = 0.1f;
     }
-
-    // Update is called once per frame
     void Update()
     {
         healthBar.Sethealth(currentHealth);
         if (currentHealth <= 0)
         {
+            StartCoroutine(FadeIn());
             Destroy(player);
             switchscene = true;
             // Call the FadeOut method on the SceneTransitionManager script to start the fade-out effect
@@ -49,6 +47,38 @@ public class PlayerHealth : MonoBehaviour
             timeSinceLastRegen = 0.0f;
         }
     }
+
+    IEnumerator FadeIn()
+    {
+        // Get the starting alpha value of the fadeOverlay
+        float startAlpha = fadeOverlay.color.a;
+
+        // Set the fadeOverlay to active
+        fadeOverlay.gameObject.SetActive(true);
+
+        // Loop until the fade duration is reached
+        while (currentFadeTime < fadeDuration)
+        {
+            // Update the current fade time
+            currentFadeTime += Time.deltaTime;
+
+            // Calculate the target alpha value using the current fade time and duration
+            float targetAlpha = Mathf.Lerp(startAlpha, 1.0f, currentFadeTime / fadeDuration);
+
+            // Update the alpha value of the fadeOverlay's color
+            Color fadeColor = fadeOverlay.color;
+            fadeColor.a = targetAlpha;
+            fadeOverlay.color = fadeColor;
+
+            yield return null;
+        }
+
+        // Set the final alpha value to 1.0f to ensure it's fully faded in
+        Color finalFadeColor = fadeOverlay.color;
+        finalFadeColor.a = 1.0f;
+        fadeOverlay.color = finalFadeColor;
+    }
+
     IEnumerator LoadDeathScreen()
     {
         // Wait for the fade-out effect to complete
@@ -72,7 +102,6 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log(currentHealth);
         }
     }
-
     void RegenerateHealth()
     {
         currentHealth++;
