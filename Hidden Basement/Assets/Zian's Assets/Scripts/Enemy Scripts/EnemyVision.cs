@@ -36,7 +36,6 @@ public class EnemyVision : MonoBehaviour
                     // Player is within field of vision and in sight, set both isPlayerDetected and inSight to true
                     isPlayerDetected = true;
                     inSight = true; // Set inSight to true
-                    Debug.Log("Player detected");
                 }
                 else
                 {
@@ -60,7 +59,6 @@ public class EnemyVision : MonoBehaviour
                 {
                     // Player is within shoot detection distance and in sight of the shoot point, set inSight to true
                     inSight = true;
-                    Debug.Log("Player in sight");
                 }
                 else
                 {

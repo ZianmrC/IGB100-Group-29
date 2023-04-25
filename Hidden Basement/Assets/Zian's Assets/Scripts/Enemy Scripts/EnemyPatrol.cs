@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyPatrol : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class EnemyPatrol : MonoBehaviour
     private Transform player; // Reference to player object
     private EnemyVision enemyVision; // Reference to EnemyVision script
     public bool canAttack; // Whether the enemy can attack the player or not
-    public Transform playerShootSpot;
+    private Transform playerShootSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +32,14 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
         attackRange = enemyVision.shootDetectionDistance;
+        playerShootSpot = GameObject.Find("InteractionPoint").transform;
     }
 
     void Update()
     {
         // Check if the enemy is within attack range of the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer <= attackRange && enemyVision.inSight)
         {
             // If player is within attack range, stop moving but still face towards the player
             canAttack = true;
@@ -72,19 +74,26 @@ public class EnemyPatrol : MonoBehaviour
             Patrolling();
         }
     }
-    // Method for handling the patrolling behavior
+    private bool isPatrolling = false;
+
     void Patrolling()
     {
-        if(navMeshAgent.remainingDistance < 0.1f)
+        if (navMeshAgent.remainingDistance < 0.1f && !isPatrolling)
         {
             // Set the next target
-            Debug.Log($"Patrol point {currentPatrolPointIndex} reached.");
             currentPatrolPointIndex = (currentPatrolPointIndex + 1);
             if (currentPatrolPointIndex >= patrolPoints.Length) currentPatrolPointIndex = 0;
-            Debug.Log($"Moving to patrol point {currentPatrolPointIndex}");
             SetTarget(patrolPoints[currentPatrolPointIndex]);
+            isPatrolling = true; // Set the boolean flag to true to indicate that patrolling is in progress
         }
+        else if (navMeshAgent.remainingDistance >= 0.1f)
+        {
+            isPatrolling = false; // Set the boolean flag to false when enemy is moving towards patrol point
+        }
+        else if (navMeshAgent.remainingDistance < 0.1 && isPatrolling) isPatrolling = false;
+
     }
+
 
 
     // Set the target for the enemy to move towards

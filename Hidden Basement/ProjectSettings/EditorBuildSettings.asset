@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Zian.unity
+    guid: 707acc8dffb72b144bb1ffbe1c965f3d
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: 1edb86be3378812489f071c3efc28c72
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: 1e68fe21cb4706c4081b87031010ee76
   m_configObjects: {}
