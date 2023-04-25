@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, iInteractable
+public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
 
@@ -10,7 +10,17 @@ public class Door : MonoBehaviour, iInteractable
 
     public bool Interact(Interactor interactor)
     {
-        Debug.Log("Opening door");
-        return true;
+        var inventory = interactor.GetComponent<Inventory>();
+
+        if (inventory == null) return false;
+
+        if(inventory.HasBlueKey && inventory.HasRedKey && inventory.HasYellowKey && inventory.HasGreenKey && inventory.HasPurpleKey)
+        {
+            _prompt = "Door is unlocked. press E to open";
+            return true;
+        }
+        Debug.Log("Missing a 'key' item. You better get looking");
+        return false;
+        
     }
 }
