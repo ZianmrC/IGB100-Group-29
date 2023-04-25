@@ -16,12 +16,18 @@ public class EnemyPatrol : MonoBehaviour
     private EnemyVision enemyVision; // Reference to EnemyVision script
     public bool canAttack; // Whether the enemy can attack the player or not
     private Transform playerShootSpot;
+    public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
+    public bool shooting;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        aware = false;
+        shooting = false;
         // Get reference to NavMeshAgent component
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         // Set initial target to the first patrol point
         SetTarget(patrolPoints[currentPatrolPointIndex]);
@@ -32,17 +38,26 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
         attackRange = enemyVision.shootDetectionDistance;
-        playerShootSpot = GameObject.Find("InteractionPoint").transform;
+        playerShootSpot = GameObject.Find("TargetPlayer").transform;
     }
 
     void Update()
     {
+        animator.SetBool("IsAware", aware);
+        animator.SetBool("IsShooting", shooting);
+        /*
+        if (navMeshAgent.velocity.magnitude == 0)
+        {
+            shooting = true;
+        }
+        */
         // Check if the enemy is within attack range of the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= attackRange && enemyVision.inSight)
         {
             // If player is within attack range, stop moving but still face towards the player
             canAttack = true;
+            shooting = true;
             navMeshAgent.isStopped = true;
             transform.LookAt(playerShootSpot);
         }
@@ -55,6 +70,7 @@ public class EnemyPatrol : MonoBehaviour
                 navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
                 navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
                 navMeshAgent.SetDestination(player.position);
+                aware = true;
             }
             else
             {
@@ -62,16 +78,17 @@ public class EnemyPatrol : MonoBehaviour
                 navMeshAgent.speed = normalMoveSpeed;
                 navMeshAgent.angularSpeed = normalAngularSpeed;
                 Patrolling(); // Call the Patrolling() method to handle patrol behavior
+                shooting = false;
             }
 
             canAttack = false;
             navMeshAgent.isStopped = false; // Resume movement
         }
-
-        // Check if the enemy is not within attack range and player is not detected, then resume patrolling
+        //Checks if the player has escaped
         if (distanceToPlayer > attackRange && !enemyVision.isPlayerDetected)
         {
             Patrolling();
+            shooting = false;
         }
     }
     private bool isPatrolling = false;
@@ -85,6 +102,8 @@ public class EnemyPatrol : MonoBehaviour
             if (currentPatrolPointIndex >= patrolPoints.Length) currentPatrolPointIndex = 0;
             SetTarget(patrolPoints[currentPatrolPointIndex]);
             isPatrolling = true; // Set the boolean flag to true to indicate that patrolling is in progress
+            aware = false;
+            shooting = false;
         }
         else if (navMeshAgent.remainingDistance >= 0.1f)
         {
@@ -93,10 +112,7 @@ public class EnemyPatrol : MonoBehaviour
         else if (navMeshAgent.remainingDistance < 0.1 && isPatrolling) isPatrolling = false;
 
     }
-
-
-
-    // Set the target for the enemy to move towards
+    // Instructs enemy to move towards target
     void SetTarget(Transform target)
     {
         // Set the NavMeshAgent destination to the target position

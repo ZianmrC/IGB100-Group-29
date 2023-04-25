@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         fadeOverlay.gameObject.SetActive(false);
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; ;
     }
     void Update()
     {
@@ -88,18 +88,16 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene("DeathScreen");
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         currentHealth--;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
         if (collision.gameObject.tag == "EnemyBullet")
         {
             TakeDamage();
-            Debug.Log(currentHealth);
         }
     }
     void RegenerateHealth()
