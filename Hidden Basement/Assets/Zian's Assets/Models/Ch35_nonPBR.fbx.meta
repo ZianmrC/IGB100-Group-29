@@ -3,67 +3,7 @@ guid: 06b7624385839eb47a21bf16b3463a52
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1001_Diffuse
-    second: {fileID: 2800000, guid: a4c1d4e23c6ea80459596a3b496f816b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1001_Glossiness
-    second: {fileID: 2800000, guid: 7b49fab8597eca64993c0de4d2113df1, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1001_Normal
-    second: {fileID: 2800000, guid: 2f382633bea112e48b43e8b5e1f3402a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1001_Specular
-    second: {fileID: 2800000, guid: 0c7c00890545046488521d050e382a56, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1002_Diffuse
-    second: {fileID: 2800000, guid: 39e925a6261faa142b8168350bd3df0a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1002_Glossiness
-    second: {fileID: 2800000, guid: 260fd3ab54d0270499a14eb8f68e2663, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1002_Normal
-    second: {fileID: 2800000, guid: d6a0c8d7505a67a458d2bd4d7595c558, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1002_Specular
-    second: {fileID: 2800000, guid: e500e0b2cad4bab46b3d0b0e3998fda8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1003_Diffuse
-    second: {fileID: 2800000, guid: eddb5bf3335a2f446ac85008767f233d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1003_Glossiness
-    second: {fileID: 2800000, guid: c2e3b098b75a140408c118f1dfac1f1f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1003_Normal
-    second: {fileID: 2800000, guid: 287cf248cdc777241b36b72bd04ecb7e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch35_1003_Specular
-    second: {fileID: 2800000, guid: 42384badb87b4a1429636d63532dee4b, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -136,6 +76,8 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips:
+  - 85f4780194f166e4089143e9a1dac197
+  - 5999eb26246d0194f983f637c5146c65
   - 06f7e82375cd475439fd982d9379c90a
   importAnimation: 1
   humanDescription:
