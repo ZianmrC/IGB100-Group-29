@@ -18,8 +18,9 @@ public class EnemyPatrol : MonoBehaviour
     private Transform playerShootSpot;
     public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
     public bool shooting;
-    private Animator animator;
     public GameObject gun;
+    private Animator animator;
+    
 
     // Start is called before the first frame update
     void Start()
