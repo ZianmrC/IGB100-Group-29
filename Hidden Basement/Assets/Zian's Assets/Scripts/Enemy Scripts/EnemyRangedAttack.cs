@@ -6,7 +6,6 @@ public class EnemyRangedAttack : MonoBehaviour
     public Transform projectileSpawnPoint; // Spawn point of the projectile
     public float projectileSpeed = 10.0f; // Speed of the projectile
     public float fireRate = 1.0f; // Rate of fire
-    public float damage; //Damage dealt to player
     private float timeSinceLastAttack; // Time elapsed since last attack
     private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
     public float offsetTarget;

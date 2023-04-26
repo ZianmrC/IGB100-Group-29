@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
         {
             RegenerateHealth();
             timeSinceLastRegen = 0.0f;
+            if( currentHealth > maxHealth) currentHealth = maxHealth;
         }
     }
 
@@ -97,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
+            Debug.Log("test");
             TakeDamage();
         }
     }

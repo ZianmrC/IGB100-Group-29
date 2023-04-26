@@ -40,7 +40,7 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
         attackRange = enemyVision.shootDetectionDistance;
-        playerShootSpot = GameObject.Find("TargetPlayer").transform;
+        playerShootSpot = GameObject.Find("PlayerTarget").transform;
     }
 
     void Update()
