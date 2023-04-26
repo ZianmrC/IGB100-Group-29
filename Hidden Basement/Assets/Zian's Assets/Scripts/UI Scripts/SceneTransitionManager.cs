@@ -13,9 +13,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Call the FadeIn method to start with a fade-in effect when the scene starts
         FadeIn();
-        Debug.Log("test");
         playerhealth = FindObjectOfType<PlayerHealth>();
-        Debug.Log(playerhealth.switchscene);
     }
 
     public void FadeIn()
@@ -32,7 +30,6 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (playerhealth.switchscene == true)
         {
-            Debug.Log("Switching scenes");
             // Set the initial alpha value of the fade overlay
             fadeOverlay.color = new Color(fadeOverlay.color.r, fadeOverlay.color.g, fadeOverlay.color.b, startAlpha);
 

@@ -19,6 +19,7 @@ public class EnemyPatrol : MonoBehaviour
     public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
     public bool shooting;
     private Animator animator;
+    public GameObject gun;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to NavMeshAgent component
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        gun = transform.Find("M1911 Handgun_Black").gameObject;
 
         // Set initial target to the first patrol point
         SetTarget(patrolPoints[currentPatrolPointIndex]);
@@ -45,12 +47,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         animator.SetBool("IsAware", aware);
         animator.SetBool("IsShooting", shooting);
-        /*
-        if (navMeshAgent.velocity.magnitude == 0)
-        {
-            shooting = true;
-        }
-        */
         // Check if the enemy is within attack range of the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= attackRange && enemyVision.inSight)
@@ -71,6 +67,7 @@ public class EnemyPatrol : MonoBehaviour
                 navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
                 navMeshAgent.SetDestination(player.position);
                 aware = true;
+                gun.SetActive(true);
             }
             else
             {
@@ -89,6 +86,11 @@ public class EnemyPatrol : MonoBehaviour
         {
             Patrolling();
             shooting = false;
+            gun.SetActive(false);
+        }
+        if (aware == true)
+        {
+            gun.SetActive(true);
         }
     }
     private bool isPatrolling = false;
