@@ -14,6 +14,7 @@ public class GreenKey : MonoBehaviour, IInteractable
     {
         var keyItem = GameObject.FindObjectOfType<Inventory>();
         keyItem.HasGreenKey = true;
+        ItemCounter.instance.AddKey(1);
         //Inventory.instance.AddItem()
         Destroy(gameObject);
         return true;

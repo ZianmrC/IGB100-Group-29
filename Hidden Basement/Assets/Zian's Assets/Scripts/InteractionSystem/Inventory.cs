@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     public bool HasYellowKey = false;
     public bool HasGreenKey = false;
     public bool HasPurpleKey = false;
+    public bool HasBlackKey = false;
 
     private void Update()
     {

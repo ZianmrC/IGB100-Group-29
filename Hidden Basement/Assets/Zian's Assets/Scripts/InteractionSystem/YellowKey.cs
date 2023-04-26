@@ -15,6 +15,7 @@ public class YellowKey : MonoBehaviour, IInteractable
         var keyItem = GameObject.FindObjectOfType<Inventory>();
         keyItem.HasYellowKey = true;
         //Inventory.instance.AddItem()
+        ItemCounter.instance.AddKey(1);
         Destroy(gameObject);
         return true;
     }

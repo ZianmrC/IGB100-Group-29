@@ -14,9 +14,10 @@ public class Door : MonoBehaviour, IInteractable
 
         if (inventory == null) return false;
 
-        if(inventory.HasBlueKey && inventory.HasRedKey && inventory.HasYellowKey && inventory.HasGreenKey && inventory.HasPurpleKey)
+        if(inventory.HasBlueKey && inventory.HasRedKey && inventory.HasYellowKey && inventory.HasGreenKey && inventory.HasPurpleKey && inventory.HasBlackKey)
         {
-            _prompt = "Door is unlocked. press E to open";
+            //_prompt = "Door is unlocked. press E to open";
+            Destroy(gameObject);
             return true;
         }
         Debug.Log("Missing a 'key' item. You better get looking");

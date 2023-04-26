@@ -14,6 +14,7 @@ public class RedKey : MonoBehaviour, IInteractable
     {
         var keyItem = GameObject.FindObjectOfType<Inventory>();
         keyItem.HasRedKey = true;
+        ItemCounter.instance.AddKey(1);
         //Inventory.instance.AddItem()
         Destroy(gameObject);
         return true;
