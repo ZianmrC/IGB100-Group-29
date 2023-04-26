@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866712bee5073b14b9f6aa4ba19047c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Pick up key
+  _prompt: 
 --- !u!65 &210029095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -885,6 +885,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393292947}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &430002420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1668747289478837282, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 5393215579111688471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &513751390
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ae0ba127e6a714f896c3aa5a0ad81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Pick up key
+  _prompt: 
 --- !u!65 &513751392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1171,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fcffa9370a3e4489b90dfd50434271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Pick up key
+  _prompt: 
 --- !u!1001 &590657515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1704,6 +1715,17 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!114 &892738759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1717976741516871743, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 5393215579111688471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6862d35883061e4fb4217c1dcc8ebec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &898111864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7324705577624711914, guid: 9eb847ab97b24024588682c8601254cf, type: 3}
@@ -1958,7 +1980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfbee8d0f0bc8f4aa1090cde2a12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Pick up key
+  _prompt: 
 --- !u!65 &1191713941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2357,7 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e717e3295aa3074da78615ca1179d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Open Door
+  _prompt: 
 --- !u!1001 &1666204850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2649,6 +2671,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7324705577624711914, guid: 9eb847ab97b24024588682c8601254cf, type: 3}
   m_PrefabInstance: {fileID: 98185000}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1959220830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959220832}
+  - component: {fileID: 1959220831}
+  m_Layer: 0
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1959220831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959220830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b28229ce16af444890b23eb5716bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyText: {fileID: 430002420}
+  key: 0
+  keycount: 0
+--- !u!4 &1959220832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959220830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17449999, y: 0.96500003, z: 0.167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1979352518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2804,7 +2873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e84fd1581cf87469fdffdb95689829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Pick up key
+  _prompt: 
 --- !u!65 &2066095054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3030,6 +3099,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1440811541278816894, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440811541278816894, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: _interactionPromptUi
+      value: 
+      objectReference: {fileID: 892738759}
     - target: {fileID: 1602348056882066209, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.26
@@ -3038,9 +3115,33 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.86
       objectReference: {fileID: 0}
+    - target: {fileID: 1668747289478837282, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668747289478837282, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668747289478837282, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668747289478837282, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717976741516871743, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747927762992994834, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6893322265180377786, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_AnchoredPosition.x
