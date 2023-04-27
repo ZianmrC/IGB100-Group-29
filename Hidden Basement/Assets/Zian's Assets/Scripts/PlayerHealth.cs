@@ -98,7 +98,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyBullet")
         {
-            Debug.Log("test");
             TakeDamage();
         }
     }
