@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Zian.unity
-    guid: 707acc8dffb72b144bb1ffbe1c965f3d
-  - enabled: 1
-    path: Assets/Scenes/DeathScreen.unity
-    guid: 1edb86be3378812489f071c3efc28c72
-  - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: 1e68fe21cb4706c4081b87031010ee76
   - enabled: 1
     path: Assets/Scenes/Peter_Level.unity
     guid: 2003ff921321edb4a95fe40fc2725c57
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: 1edb86be3378812489f071c3efc28c72
+  - enabled: 1
+    path: Assets/Scenes/MissionCompleteScreen.unity
+    guid: dbf335027f1897a439e6556fcb8c8c9c
   m_configObjects: {}

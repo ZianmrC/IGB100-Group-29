@@ -22,7 +22,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         fadeOverlay.gameObject.SetActive(false);
-        currentHealth = maxHealth; ;
+        currentHealth = maxHealth;
+        Cursor.visible = false;
     }
     void Update()
     {
