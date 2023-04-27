@@ -1259,6 +1259,7 @@ MonoBehaviour:
   projectileSpeed: 40
   fireRate: 0.8
   offsetTarget: 1
+  soundClip: {fileID: 8300000, guid: 3f978ff3f4cf5084dbf97cf211efa63d, type: 3}
 --- !u!114 &6396481195877219829
 MonoBehaviour:
   m_ObjectHideFlags: 0
