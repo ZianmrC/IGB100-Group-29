@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421956752562746127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.726}
+  m_LocalPosition: {x: 0, y: 1.26, z: 0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 5393215578589016640}
   m_Layer: 8
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 8616685848737228372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4135013735270702856}
@@ -375,6 +375,7 @@ MonoBehaviour:
   HasYellowKey: 0
   HasGreenKey: 0
   HasPurpleKey: 0
+  HasBlackKey: 0
 --- !u!114 &1440811541278816894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +383,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf67b1a81e6695844b8121c7c1dc68d0, type: 3}
   m_Name: 
@@ -392,7 +393,6 @@ MonoBehaviour:
   _interactableMask:
     serializedVersion: 2
     m_Bits: 64
-  _interactionPromptUi: {fileID: 0}
   _numFound: 0
 --- !u!114 &8616685848737228371
 MonoBehaviour:
@@ -408,10 +408,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHeight: {fileID: 8616685848737228382}
   normalHeight: 2
-  crouchHeight: 0.6
-  MoveSpeed: 4
-  SprintSpeed: 10
-  CrouchSpeed: 1.5
+  crouchHeight: 0.4
+  MoveSpeed: 6
+  SprintSpeed: 12
+  CrouchSpeed: 3.5
   RotationSpeed: 3
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -762,6 +762,26 @@ PrefabInstance:
     - target: {fileID: 7380401275518663886, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570567344127679526, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633566787695550523, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633566787695550523, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633566787695550523, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633566787695550523, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3b717041f0f2624d847058e61f8fda0, type: 3}
