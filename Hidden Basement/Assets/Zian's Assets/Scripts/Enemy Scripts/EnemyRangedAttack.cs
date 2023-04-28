@@ -6,10 +6,11 @@ public class EnemyRangedAttack : MonoBehaviour
     public Transform projectileSpawnPoint; // Spawn point of the projectile
     public float projectileSpeed = 10.0f; // Speed of the projectile
     public float fireRate = 1.0f; // Rate of fire
-    public float damage; //Damage dealt to player
+    public float offsetTarget;
+    public AudioClip soundClip; // Sound clip to play when projectile is instantiated
+
     private float timeSinceLastAttack; // Time elapsed since last attack
     private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
-    public float offsetTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +59,15 @@ public class EnemyRangedAttack : MonoBehaviour
 
         Physics.IgnoreCollision(projectile.GetComponent<Collider>(), GetComponent<Collider>());
 
+        // Play the sound clip
+        if (soundClip != null)
+        {
+            AudioSource.PlayClipAtPoint(soundClip, transform.position);
+        }
+
         // Destroy the projectile after a certain time
         Destroy(projectile, 5.0f); // Change 5.0f to the desired time for projectile destruction
     }
-
 
     void OnCollisionEnter(Collision collision)
     {

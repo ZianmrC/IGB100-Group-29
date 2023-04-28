@@ -8,6 +8,8 @@ public class SceneTransitionManager : MonoBehaviour
     public Image fadeOverlay;
     public float fadeDuration = 1.0f;
     public PlayerHealth playerhealth;
+    public Door door;
+    private string sceneName1 = "DeathScreen";
 
     private void Start()
     {
@@ -50,7 +52,7 @@ public class SceneTransitionManager : MonoBehaviour
             if (targetAlpha == 0.0f)
             {
                 // Fade out completed, load the new scene
-                SceneManager.LoadScene("DeathScreen");
+                SceneManager.LoadScene(sceneName1);
             }
         }
     }

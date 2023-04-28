@@ -22,7 +22,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         fadeOverlay.gameObject.SetActive(false);
-        currentHealth = maxHealth; ;
+        currentHealth = maxHealth;
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -45,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
         {
             RegenerateHealth();
             timeSinceLastRegen = 0.0f;
+            if( currentHealth > maxHealth) currentHealth = maxHealth;
         }
     }
 
