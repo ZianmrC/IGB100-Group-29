@@ -18,6 +18,7 @@ public class EnemyPatrol : MonoBehaviour
     private Transform playerShootSpot;
     public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
     public bool shooting;
+    private float offset = 2.0f; //Offset
     public GameObject gun;
     private Animator animator;
     
@@ -41,7 +42,7 @@ public class EnemyPatrol : MonoBehaviour
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
         attackRange = enemyVision.shootDetectionDistance;
-        playerShootSpot = GameObject.Find("PlayerTarget").transform;
+        playerShootSpot = GameObject.Find("InteractionPoint").transform;
     }
 
     void Update()
@@ -56,7 +57,9 @@ public class EnemyPatrol : MonoBehaviour
             canAttack = true;
             shooting = true;
             navMeshAgent.isStopped = true;
-            transform.LookAt(playerShootSpot);
+            Vector3 targetPosition = playerShootSpot.position;
+            targetPosition.y -= offset; // Apply Y offset
+            transform.LookAt(targetPosition);
         }
         else
         {
