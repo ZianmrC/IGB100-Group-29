@@ -15,8 +15,13 @@ public class EnemyVision : MonoBehaviour
     void Start()
     {
         // Get reference to the player's transform
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
     }
+
 
     void Update()
     {

@@ -32,6 +32,69 @@ Transform:
   m_Father: {fileID: 214124487524263984}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &250116842582525887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7597505781263876667}
+  - component: {fileID: 1975411052360011371}
+  - component: {fileID: 699104684}
+  m_Layer: 6
+  m_Name: HP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7597505781263876667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250116842582525887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6867537242718951960}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1975411052360011371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250116842582525887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
+  enemy: {fileID: 6396481194607189100}
+  _prompt: 
+--- !u!136 &699104684
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250116842582525887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.29
+  m_Height: 0.08
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.37, z: 0}
 --- !u!1 &837806868244929284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1224,6 @@ GameObject:
   - component: {fileID: 6396481195877219831}
   - component: {fileID: 6396481195877219828}
   - component: {fileID: 6396481195877219829}
-  - component: {fileID: 5557368225338507762}
   - component: {fileID: 6054443255162405027}
   m_Layer: 6
   m_Name: Ch35_nonPBR
@@ -1185,6 +1247,7 @@ Transform:
   - {fileID: 2966444650382282487}
   - {fileID: 1377598391521458828}
   - {fileID: 7115337376102120091}
+  - {fileID: 7597505781263876667}
   m_Father: {fileID: 6396481194607189101}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1201,7 +1264,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2932250865894360746, guid: 02fcadfabf52d68448ec3dbbcaccd898, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: 06b7624385839eb47a21bf16b3463a52, type: 3}
 --- !u!195 &6396481195877219830
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1285,21 +1348,7 @@ MonoBehaviour:
   aware: 0
   shooting: 0
   gun: {fileID: 7109377920260742381}
---- !u!114 &5557368225338507762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6054443255162405026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
-  _prompt: 
+  pistolWalking: 0
 --- !u!95 &6054443255162405027
 Animator:
   serializedVersion: 5
@@ -1602,7 +1651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6396481194607189100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.52, y: -10.539875, z: 9.76}
+  m_LocalPosition: {x: 0, y: 0, z: 9.76}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2720,7 +2769,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2932250865894360746, guid: 02fcadfabf52d68448ec3dbbcaccd898, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: 06b7624385839eb47a21bf16b3463a52, type: 3}
   m_Bones:
   - {fileID: 1377598391521458828}
   - {fileID: 1690767026966186271}

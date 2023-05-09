@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0363761c7b6462143911217c81d1690a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: StartScreen
+  sceneToLoad: StartScreen2
 --- !u!1 &1684646481
 GameObject:
   m_ObjectHideFlags: 0

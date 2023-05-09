@@ -6,6 +6,7 @@ public class EnemyHp : MonoBehaviour, IInteractable
 {
     public float health = 1.0f;
     public GameObject deathEffect;
+    public GameObject enemy;
 
     [SerializeField] private string _prompt;
 
@@ -37,7 +38,7 @@ public class EnemyHp : MonoBehaviour, IInteractable
         health -= damage;
         if (health <= 0.0f)
         {
-            Destroy(this.gameObject);
+            Destroy(enemy.gameObject);
             Instantiate(deathEffect, transform.position, transform.rotation);
         }
     }

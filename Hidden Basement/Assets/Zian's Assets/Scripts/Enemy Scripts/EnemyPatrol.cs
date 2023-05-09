@@ -21,6 +21,8 @@ public class EnemyPatrol : MonoBehaviour
     private float offset = 2.0f; //Offset
     public GameObject gun;
     private Animator animator;
+
+    public bool pistolWalking;
     
 
     // Start is called before the first frame update
@@ -38,6 +40,10 @@ public class EnemyPatrol : MonoBehaviour
 
         // Replace "player" with your actual player object reference
         player = GameObject.Find("PlayerCapsule").transform;
+        if (player == null)
+        {
+            Patrolling();
+        }
 
         // Get reference to EnemyVision script
         enemyVision = GetComponent<EnemyVision>();
@@ -90,7 +96,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             Patrolling();
             shooting = false;
-            gun.SetActive(false);
+            if (pistolWalking == false) gun.SetActive(false);
         }
         if (aware == true)
         {
