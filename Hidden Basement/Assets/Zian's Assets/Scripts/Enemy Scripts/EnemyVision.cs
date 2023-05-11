@@ -11,6 +11,7 @@ public class EnemyVision : MonoBehaviour
     public float shootDetectionDistance; // Maximum detection distance for shooting
 
     private Transform player; // Reference to the player's transform
+    MusicPlayer musicPlayer;
 
     void Start()
     {
@@ -20,11 +21,12 @@ public class EnemyVision : MonoBehaviour
         {
             player = playerObject.transform;
         }
+        //musicPlayer = GameObject.Find("UI_EventSystem").GetComponent<MusicPlayer> ();
     }
-
 
     void Update()
     {
+        
         // Check if the player is within field of vision
         Vector3 directionToPlayer = player.position - transform.position;
         float angleToPlayer = Vector3.Angle(directionToPlayer, transform.forward);
@@ -93,7 +95,6 @@ public class EnemyVision : MonoBehaviour
         Gizmos.DrawRay(transform.position, Quaternion.Euler(0, fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
         Gizmos.DrawRay(transform.position, transform.forward * detectionDistance);
         Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -fieldOfVisionAngle * 0.5f, 0) * transform.forward * detectionDistance);
-
 
     }
 }

@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class SubMenuOpen : MonoBehaviour
 {
-    public GameObject ControlPage;
+    public GameObject PageToOpen;
+    public GameObject PageToClose;
     // Start is called before the first frame update
     void Start()
     {
-        CloseControlPage();
     }
 
-    public void OpenControlPage()
+    public void OpenPage()
     {
-        ControlPage.SetActive(true);
+        PageToOpen.SetActive(true);
     }
-    public void CloseControlPage()
+    public void ClosePage()
     {
-        ControlPage.SetActive(false);
+        PageToClose.SetActive(false);
     }
 
 }

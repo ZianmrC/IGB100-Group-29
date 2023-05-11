@@ -8,18 +8,28 @@ public class GunScript : MonoBehaviour
     public int damage = 10;               // Damage of the bullet
     public float fireRate = 2f;         // Rate of fire in seconds (e.g. 0.1f means 10 bullets per second)
     public float projectileVelocity = 50f; // Velocity of the bullet
+    public GameObject gun;
+    public bool gunVisibility; // Allows gun to be visisble
 
     private float nextFireTime;          // Time of the next allowed shot
 
+    void Start()
+    {
+        gun.SetActive(gunVisibility);
+    }
+
     void Update()
     {
-        // Check for fire input (e.g. left mouse button)
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        if (gunVisibility == true)
         {
-            // Shoot a bullet
-            Shoot();
-            // Update the next allowed shot time
-            nextFireTime = Time.time + 1f / fireRate;
+            // Check for fire input (e.g. left mouse button)
+            if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+            {
+                // Shoot a bullet
+                Shoot();
+                // Update the next allowed shot time
+                nextFireTime = Time.time + 1f / fireRate;
+            }
         }
     }
 

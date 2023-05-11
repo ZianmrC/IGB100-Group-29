@@ -18,12 +18,21 @@ public class EnemyPatrol : MonoBehaviour
     private Transform playerShootSpot;
     public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
     public bool shooting;
-    private float offset = 2.0f; //Offset
     public GameObject gun;
     private Animator animator;
 
+    //Only for Enemies in the Start Screen
+    public bool StartScreenEnemy; //Bool only true for enemies in the start screen
+    public bool gunVisible; //Makes gun visible
     public bool pistolWalking;
-    
+
+    //For testing Purposes
+    public bool test1;
+    public bool test2;
+    public bool test3;
+    public bool test4;
+    public bool test5;
+    public bool test6;
 
     // Start is called before the first frame update
     void Start()
@@ -53,56 +62,94 @@ public class EnemyPatrol : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("IsAware", aware);
-        animator.SetBool("IsShooting", shooting);
-        // Check if the enemy is within attack range of the player
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= attackRange && enemyVision.inSight)
+        test1 = false;
+        test2 = false;
+        test3 = false;
+        test4 = false;
+        test5 = false;
+        test6 = false;
+        if (StartScreenEnemy == true)
         {
-            // If player is within attack range, stop moving but still face towards the player
-            canAttack = true;
-            shooting = true;
-            navMeshAgent.isStopped = true;
-            Vector3 targetPosition = playerShootSpot.position;
-            targetPosition.y -= offset; // Apply Y offset
-            transform.LookAt(targetPosition);
+            Patrolling();
+            gun.SetActive(gunVisible);
         }
         else
         {
-            // If player is not within attack range
-            if (enemyVision.isPlayerDetected)
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+            Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
+
+            //If Player is detected and is within attack range
+            if (distanceToPlayer < attackRange)// && enemyVision.inSight)
             {
-                // If player is detected, move towards the player with increased speed and angular speed
+                canAttack = true;
+                shooting = true;
+                navMeshAgent.isStopped = true;
+
+                transform.LookAt(lookAtPosition + offset);
+                test1 = true;
+            }
+            //If player is detected and not within attack range
+            else if (enemyVision.isPlayerDetected)
+            {
+                aware = true;
+                navMeshAgent.isStopped = false;
                 navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
                 navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
-                navMeshAgent.SetDestination(player.position);
-                aware = true;
-                gun.SetActive(true);
+                test2 = true;
+                //If enemy is within attack range again
+                if (distanceToPlayer < attackRange)// && enemyVision.inSight)
+                {
+                    canAttack = true;
+                    shooting = true;
+                    navMeshAgent.isStopped = true;
+                    transform.LookAt(lookAtPosition + offset);
+                    test3 = true;
+                }
+                //Move towards player if not within attack range
+                else if (distanceToPlayer < attackRange)
+                {
+                    navMeshAgent.SetDestination(player.position);
+                    shooting = false;
+                    aware = true;
+                    gun.SetActive(true);
+                    test4 = true;
+                }
+                //Player is undetected, resume patrolling
+                else
+                {
+                    navMeshAgent.speed = normalMoveSpeed;
+                    navMeshAgent.angularSpeed = normalAngularSpeed;
+                    Patrolling();
+                    test5 = true;
+                }
             }
+            //Player is undetected, resume patrolling
+            /*
             else
             {
-                // If player is not detected, continue patrolling with normal speed and angular speed
                 navMeshAgent.speed = normalMoveSpeed;
                 navMeshAgent.angularSpeed = normalAngularSpeed;
-                Patrolling(); // Call the Patrolling() method to handle patrol behavior
-                shooting = false;
+                Patrolling();
+                test5 = true;
             }
+            */
 
-            canAttack = false;
-            navMeshAgent.isStopped = false; // Resume movement
-        }
-        //Checks if the player has escaped
-        if (distanceToPlayer > attackRange && !enemyVision.isPlayerDetected)
-        {
-            Patrolling();
-            shooting = false;
-            if (pistolWalking == false) gun.SetActive(false);
-        }
-        if (aware == true)
-        {
-            gun.SetActive(true);
+            if (distanceToPlayer > attackRange && !enemyVision.isPlayerDetected)
+            {
+                Patrolling();
+                shooting = false;
+                test6 = true;
+                if (!pistolWalking) gun.SetActive(false);
+            }
+            gun.SetActive(aware);
+            Debug.Log($"test1:{test1}, test2:{test2}, test3:{test3}, test4:{test4}, test5:{test5}, test6:{test6}");
+            //Debug.Log(enemyVision.inSight);
+            animator.SetBool("IsAware", aware);
+            animator.SetBool("IsShooting", shooting);
         }
     }
+
     private bool isPatrolling = false;
 
     void Patrolling()
@@ -114,8 +161,8 @@ public class EnemyPatrol : MonoBehaviour
             if (currentPatrolPointIndex >= patrolPoints.Length) currentPatrolPointIndex = 0;
             SetTarget(patrolPoints[currentPatrolPointIndex]);
             isPatrolling = true; // Set the boolean flag to true to indicate that patrolling is in progress
+            gun.SetActive(false);
             aware = false;
-            shooting = false;
         }
         else if (navMeshAgent.remainingDistance >= 0.1f)
         {
