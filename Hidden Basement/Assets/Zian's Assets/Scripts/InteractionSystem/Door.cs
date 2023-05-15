@@ -10,10 +10,11 @@ public class Door : MonoBehaviour, IInteractable
     SceneSwitcher sceneSwitcher;
 
     public string InterationPrompt => _prompt;
+    public GameObject text;
 
     void Start()
     {
-
+        text.SetActive(false);
     }
     public bool Interact(Interactor interactor)
     {
@@ -37,8 +38,13 @@ public class Door : MonoBehaviour, IInteractable
             return true;
 
         }
-        Debug.Log("Missing a 'key' item. You better get looking");
+        text.SetActive(true);
+        Invoke("SetInactive", 5f);
         return false;
         
+    }
+    public void SetInactive()
+    {
+        text.SetActive(false);
     }
 }
