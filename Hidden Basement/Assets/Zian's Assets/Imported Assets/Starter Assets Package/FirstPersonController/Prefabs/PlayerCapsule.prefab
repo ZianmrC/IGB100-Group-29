@@ -236,13 +236,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.84
+  m_Height: 0.94
   m_Radius: 0.34
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!114 &5532504467582271396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHeight: {fileID: 8616685848737228382}
   normalHeight: 2
-  crouchHeight: 0.1
+  crouchHeight: 0.2
   MoveSpeed: 6
   SprintSpeed: 12
   CrouchSpeed: 3.5
@@ -445,6 +445,8 @@ MonoBehaviour:
   damage: 10
   fireRate: 3
   projectileVelocity: 70
+  gun: {fileID: 0}
+  gunVisibility: 0
 --- !u!114 &135756641613574981
 MonoBehaviour:
   m_ObjectHideFlags: 0
