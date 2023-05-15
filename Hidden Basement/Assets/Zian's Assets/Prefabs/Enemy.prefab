@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 8999809028773685005}
   - component: {fileID: 8147124888101801758}
   - component: {fileID: 8200198409839666426}
+  - component: {fileID: 3400957492666638784}
   m_Layer: 6
   m_Name: Ch35_nonPBR
   m_TagString: Untagged
@@ -440,8 +441,8 @@ MonoBehaviour:
   isPlayerDetected: 0
   canAttack: 0
   music: {fileID: 0}
-  lastKnownPosition: {x: 0, y: 0, z: 0}
   screenFlash: {fileID: 0}
+  lastKnownPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &8147124888101801758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +490,22 @@ MonoBehaviour:
   fireRate: 0.8
   offsetTarget: 1.5
   soundClip: {fileID: 8300000, guid: 3f978ff3f4cf5084dbf97cf211efa63d, type: 3}
+--- !u!114 &3400957492666638784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033197008808524475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
+  enemy: {fileID: 1033197008808524475}
+  _prompt: 
 --- !u!1 &1114396556234719065
 GameObject:
   m_ObjectHideFlags: 0

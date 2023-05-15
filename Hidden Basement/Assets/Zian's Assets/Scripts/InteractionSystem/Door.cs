@@ -34,7 +34,6 @@ public class Door : MonoBehaviour, IInteractable
                 sceneSwitcher.sceneToLoad = "MissionCompleteScreen";
                 sceneSwitcher.LoadScene();
             }
-            Cursor.visible = true;
             return true;
 
         }
