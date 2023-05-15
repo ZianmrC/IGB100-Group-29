@@ -80,7 +80,7 @@ public class EnemyPatrol : MonoBehaviour
             Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
 
             //If Player is detected and is within attack range
-            if (distanceToPlayer < attackRange)// && enemyVision.inSight)
+            if (distanceToPlayer < attackRange) // && enemyVision.inSight)
             {
                 canAttack = true;
                 shooting = true;
@@ -143,7 +143,7 @@ public class EnemyPatrol : MonoBehaviour
                 if (!pistolWalking) gun.SetActive(false);
             }
             gun.SetActive(aware);
-            Debug.Log($"test1:{test1}, test2:{test2}, test3:{test3}, test4:{test4}, test5:{test5}, test6:{test6}");
+            //Debug.Log($"test1:{test1}, test2:{test2}, test3:{test3}, test4:{test4}, test5:{test5}, test6:{test6}");
             //Debug.Log(enemyVision.inSight);
             animator.SetBool("IsAware", aware);
             animator.SetBool("IsShooting", shooting);

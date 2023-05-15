@@ -10,13 +10,13 @@ public class EnemyRangedAttack : MonoBehaviour
     public AudioClip soundClip; // Sound clip to play when projectile is instantiated
 
     private float timeSinceLastAttack; // Time elapsed since last attack
-    private EnemyPatrol enemyPatrol; // Reference to the EnemyPatrol script
+    private EnemySearch enemySearch; // Reference to the EnemyPatrol script
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the references to the other scripts used
-        enemyPatrol = GetComponent<EnemyPatrol>();
+        enemySearch = GetComponent<EnemySearch>();
         // Initialize timeSinceLastAttack to fireRate to allow immediate attack
         timeSinceLastAttack = fireRate;
     }
@@ -25,13 +25,13 @@ public class EnemyRangedAttack : MonoBehaviour
     void Update()
     {
         // Check if the enemy can attack
-        if (enemyPatrol != null)
+        if (enemySearch != null)
         {
             // Update timeSinceLastAttack
             timeSinceLastAttack += Time.deltaTime;
 
             // Check if enough time has elapsed since last attack
-            if (timeSinceLastAttack >= fireRate && enemyPatrol.canAttack == true)
+            if (timeSinceLastAttack >= fireRate && enemySearch.canAttack == true)
             {
                 // Instantiate the projectile
                 InstantiateProjectile();
@@ -40,7 +40,7 @@ public class EnemyRangedAttack : MonoBehaviour
                 timeSinceLastAttack = 0.0f;
 
                 // Reset the canAttack flag in EnemyPatrol script
-                enemyPatrol.canAttack = false;
+                enemySearch.canAttack = false;
             }
         }
     }

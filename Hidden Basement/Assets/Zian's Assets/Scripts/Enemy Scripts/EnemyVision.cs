@@ -26,10 +26,11 @@ public class EnemyVision : MonoBehaviour
 
     void Update()
     {
-        
+
         // Check if the player is within field of vision
         Vector3 directionToPlayer = player.position - transform.position;
-        float angleToPlayer = Vector3.Angle(directionToPlayer, transform.forward);
+        float dot = Vector3.Dot(directionToPlayer.normalized, transform.forward);
+        float angleToPlayer = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
         // If player is within field of vision angle and within detection distance
         if (angleToPlayer <= fieldOfVisionAngle * 0.5f && directionToPlayer.magnitude <= detectionDistance)
@@ -58,7 +59,7 @@ public class EnemyVision : MonoBehaviour
                 inSight = true; // Set inSight to true
             }
 
-            // Check if there is no obstruction between enemy's shoot point and player
+            //Check if there's nothing between enemy's shoot point and player
             Vector3 directionToShootPoint = player.position - shootPoint.position;
             if (Physics.Raycast(shootPoint.position, directionToShootPoint, out hit, shootDetectionDistance))
             {
@@ -81,7 +82,7 @@ public class EnemyVision : MonoBehaviour
         }
         else
         {
-            // Player is not within field of vision, set both isPlayerDetected and inSight to false
+            // Player is not within field of vision, let isPlayerDetected and inSight = false
             isPlayerDetected = false;
             inSight = false;
         }
