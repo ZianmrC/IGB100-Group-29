@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 892568de4590fca4ab67a65f2c4cc871, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6
+      value: 7.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 892568de4590fca4ab67a65f2c4cc871, type: 3}
       propertyPath: m_LocalPosition.y
@@ -615,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 892568de4590fca4ab67a65f2c4cc871, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.76
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 892568de4590fca4ab67a65f2c4cc871, type: 3}
       propertyPath: m_LocalRotation.w
@@ -669,6 +669,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.036881343, y: 0.006849018, z: 0.031104509}
   m_Center: {x: 0, y: 0, z: 0.014274998}
+--- !u!54 &179042735
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179042733}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &293320385
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,15 +795,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.026030004
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4179764
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7879524
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -821,8 +837,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
+--- !u!1 &305894123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c64eaec115b34e4a9fcdd25113f895a, type: 3}
+  m_PrefabInstance: {fileID: 305894122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &305894124
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305894123}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0033986273, y: 0.0047025573, z: 0.0007795121}
+  m_Center: {x: -0.00020314066, y: 0, z: 0}
+--- !u!54 &305894125
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305894123}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &393292947
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5965192
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.y
@@ -941,7 +995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.1824193
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalRotation.w
@@ -975,8 +1029,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
+--- !u!1 &493414288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
+  m_PrefabInstance: {fileID: 493414287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &493414289
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493414288}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0033986273, y: 0.0047025573, z: 0.0007795121}
+  m_Center: {x: -0.00020314066, y: 0, z: 0}
+--- !u!54 &493414290
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493414288}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &542508511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,15 +2661,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.58431417
+      value: 3.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.414
+      value: 1.91
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.9343143
+      value: 2.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2611,8 +2703,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
+--- !u!1 &1699704440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
+  m_PrefabInstance: {fileID: 1699704439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1699704441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699704440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0033986282, y: 0.0047025606, z: 0.0007795134}
+  m_Center: {x: -0.0002031407, y: 2.2860362e-14, z: 6.054091e-11}
+--- !u!54 &1699704442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699704440}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1713593825
 PrefabInstance:
   m_ObjectHideFlags: 0
