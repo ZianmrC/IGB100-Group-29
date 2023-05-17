@@ -9,7 +9,7 @@ public class MusicPlayer : MonoBehaviour
     public bool loop = true;
 
     private AudioSource audioSource;
-    private EnemyVision enemyVision;
+    private EnemyVision2 enemyVision;
     public bool isDetected;
     private float timeUndetected;
 

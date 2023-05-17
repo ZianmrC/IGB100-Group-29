@@ -1517,7 +1517,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2932250865894360746, guid: 02fcadfabf52d68448ec3dbbcaccd898, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: 64492de6f35e04f4ea898c8732c344d5, type: 3}
   m_Bones:
   - {fileID: 3293236784084233753}
   - {fileID: 7623662394232908691}
@@ -2675,9 +2675,10 @@ GameObject:
   - component: {fileID: 834274781227714001}
   - component: {fileID: 3988102688950575519}
   - component: {fileID: 3426335540879696795}
-  - component: {fileID: 1572406310779461434}
   - component: {fileID: 7449330508539363981}
   - component: {fileID: 7449330508539363982}
+  - component: {fileID: 3509288490317502964}
+  - component: {fileID: 7688303132820690826}
   m_Layer: 6
   m_Name: Ch35_nonPBR
   m_TagString: Enemy
@@ -2712,12 +2713,12 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7449330508539363980}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2932250865894360746, guid: 02fcadfabf52d68448ec3dbbcaccd898, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: 64492de6f35e04f4ea898c8732c344d5, type: 3}
 --- !u!195 &3988102688950575519
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2761,26 +2762,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1572406310779461434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7449330508539363980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c249a716d3016534bb9c769584fa1900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewDistance: 16
-  viewAngle: 55
-  attackRange: 12
-  isPlayerDetected: 0
-  canAttack: 0
-  music: {fileID: 0}
-  screenFlash: {fileID: 0}
-  floor1Enemy: 0
 --- !u!114 &7449330508539363981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2825,6 +2806,40 @@ MonoBehaviour:
   fireRate: 0.8
   offsetTarget: 1.5
   soundClip: {fileID: 8300000, guid: 3f978ff3f4cf5084dbf97cf211efa63d, type: 3}
+--- !u!114 &3509288490317502964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449330508539363980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
+  enemy: {fileID: 5205165791642202465}
+  _prompt: 
+--- !u!114 &7688303132820690826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449330508539363980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a761542c63bca047ab818676952b8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewDistance: 16
+  viewAngle: 55
+  attackRange: 12
+  isPlayerDetected: 0
+  canAttack: 0
+  music: {fileID: 0}
 --- !u!1 &7854734689563253771
 GameObject:
   m_ObjectHideFlags: 0

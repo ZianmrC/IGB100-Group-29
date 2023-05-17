@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Linq;
 
 public class EnemySearch : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemySearch : MonoBehaviour
     private int currentPatrolPointIndex = 0; // Current index of the patrol point
     private NavMeshAgent navMeshAgent; // Reference to NavMeshAgent component
     private Transform player; // Reference to player object
-    private EnemyVision2 enemyVision; // Reference to EnemyVision script
+    private EnemyVisionSearch enemyVision; // Reference to EnemyVision script
     public bool canAttack; // Whether the enemy can attack the player or not
     private Transform playerShootSpot;
     public bool aware; // Bool to check if the enemy is 'in combat' or patrolling
@@ -37,9 +38,6 @@ public class EnemySearch : MonoBehaviour
         animator = GetComponent<Animator>();
         gun = transform.Find("M1911 Handgun_Black").gameObject;
 
-        // Set initial target to the first patrol point
-        Patrolling();
-
         // Replace "player" with your actual player object reference
         player = GameObject.Find("PlayerCapsule").transform;
         if (player == null)
@@ -48,7 +46,7 @@ public class EnemySearch : MonoBehaviour
         }
 
         // Get reference to EnemyVision script
-        enemyVision = GetComponent<EnemyVision2>();
+        enemyVision = GetComponent<EnemyVisionSearch>();
         playerShootSpot = GameObject.Find("InteractionPoint").transform;
     }
 
@@ -61,70 +59,79 @@ public class EnemySearch : MonoBehaviour
         }
         else
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
-            Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
 
-            //If Player is detected and is within attack range
-            if (enemyVision.canAttack == true && enemyVision.isPlayerDetected == true)
+            if (EnemyVisionSearch.Detection) //Player detected, all enemies converge on player
             {
-                aware = true;
-                canAttack = true;
-                shooting = true;
-                navMeshAgent.isStopped = true;
+                GameObject[] floor1Enemies = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.name == "Ch35_nonPBR").ToArray();
+                foreach (GameObject enemy in floor1Enemies)
+                {
+                    enemy.GetComponent<NavMeshAgent>().SetDestination(EnemyVisionSearch.lastKnownPosition);
+                }
 
-                transform.LookAt(lookAtPosition + offset);
             }
-            //If player is detected and not within attack range
-            else if (enemyVision.isPlayerDetected == true)
-            {
-                aware = true;
-                navMeshAgent.isStopped = false;
-                navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
-                navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
-            }
-            //Player is undetected, resume patrolling
             else
             {
-                navMeshAgent.speed = normalMoveSpeed;
-                navMeshAgent.angularSpeed = normalAngularSpeed;
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+                Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+                Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
 
-                Patrolling(); // Always call the Patrolling() method when the player is not detected
-
-                // If the enemy was previously aware of the player's presence, move towards the last known position
-                if (aware)
+                //If Player is detected and is within attack range
+                if (enemyVision.canAttack == true && enemyVision.isPlayerDetected == true)
                 {
-                    navMeshAgent.SetDestination(EnemyVision2.lastKnownPosition);
-                    if (Vector3.Distance(transform.position, EnemyVision2.lastKnownPosition) < 0.1f)
+                    aware = true;
+                    canAttack = true;
+                    shooting = true;
+                    navMeshAgent.isStopped = true;
+
+                    transform.LookAt(lookAtPosition + offset);
+                }
+                //If player is detected and not within attack range
+                else if (enemyVision.isPlayerDetected == true)
+                {
+                    aware = true;
+                    navMeshAgent.isStopped = false;
+                    navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
+                    navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
+                }
+                //Player is undetected, resume patrolling
+                else
+                {
+                    navMeshAgent.speed = normalMoveSpeed;
+                    navMeshAgent.angularSpeed = normalAngularSpeed;
+
+                    Patrolling(); // Always call the Patrolling() method when the player is not detected
+
+                    // If the enemy was previously aware of the player's presence, move towards the last known position
+                    if (aware)
                     {
-                        aware = false;
+                        navMeshAgent.SetDestination(EnemyVision2.lastKnownPosition);
+                        if (Vector3.Distance(transform.position, EnemyVision2.lastKnownPosition) < 0.1f)
+                        {
+                            aware = false;
+                        }
+                    }
+                }
+                bool NotStationary = navMeshAgent.velocity.magnitude > 0;
+                gun.SetActive(aware);
+                animator.SetBool("IsAware", aware);
+                animator.SetBool("NotStationary", NotStationary);
+
+                if (NotStationary)
+                {
+                    stationaryTime = 0f;
+                }
+                else
+                {
+                    stationaryTime += Time.deltaTime;
+                    if (stationaryTime > 6f)
+                    {
+                        navMeshAgent.isStopped = false;
                     }
                 }
             }
-            bool NotStationary = navMeshAgent.velocity.magnitude > 0;
-            gun.SetActive(aware);
-            animator.SetBool("IsAware", aware);
-            animator.SetBool("NotStationary", NotStationary);
-            if (NotStationary)
-            {
-                stationaryTime = 0f;
-            }
-            else
-            {
-                stationaryTime += Time.deltaTime;
-                if (stationaryTime > 6f)
-                {
-                    navMeshAgent.isStopped = false;
-                    Patrolling() ;
-                }
-            }
         }
-    }
-    IEnumerator Reset()
-    {
-        yield return new WaitForSeconds(6f);
-        navMeshAgent.isStopped = false;
-        Patrolling();
+        Debug.Log(EnemyVisionSearch.Detection);
+        Debug.Log(EnemyVisionSearch.lastKnownPosition);
     }
 
     private Vector3 lastPosition;
@@ -133,37 +140,48 @@ public class EnemySearch : MonoBehaviour
 
     void Patrolling()
     {
-        if (navMeshAgent.remainingDistance < 0.1f)
+    if (navMeshAgent.remainingDistance < 0.1f)
+    {
+        if (!isPatrolling)
         {
-            if (!isPatrolling)
-            {
-                lastPosition = transform.position;
-                isPatrolling = true;
-            }
+            lastPosition = transform.position;
+            isPatrolling = true;
+        }
 
+        Vector3 targetPosition;
+
+        // If the player has been detected, move towards the last known position
+        if (enemyVision.isPlayerDetected)
+        {
+            targetPosition = EnemyVisionSearch.lastKnownPosition;
+        }
+        else
+        {
             Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * patrolRadius;
             randomDirection += transform.position;
             NavMeshHit hit;
             NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, 1);
-            Vector3 finalPosition = hit.position;
+            targetPosition = hit.position;
 
-            if (Vector3.Distance(finalPosition, lastPosition) < patrolRadius / 2f)
+            if (Vector3.Distance(targetPosition, lastPosition) < patrolRadius / 2f)
             {
-                finalPosition = transform.position + (transform.forward * patrolRadius);
-                NavMesh.SamplePosition(finalPosition, out hit, patrolRadius, 1);
-                finalPosition = hit.position;
+                targetPosition = transform.position + (transform.forward * patrolRadius);
+                NavMesh.SamplePosition(targetPosition, out hit, patrolRadius, 1);
+                targetPosition = hit.position;
             }
+        }
 
-            SetTarget(finalPosition);
-            lastPosition = finalPosition;
-            gun.SetActive(false);
-            aware = false;
-        }
-        else if (navMeshAgent.remainingDistance >= 0.1f)
-        {
-            isPatrolling = false;
-        }
+        SetTarget(targetPosition);
+        lastPosition = targetPosition;
+        gun.SetActive(false);
+        aware = false;
     }
+    else if (navMeshAgent.remainingDistance >= 0.1f)
+    {
+        isPatrolling = false;
+    }
+}
+
 
     // Instructs enemy to move towards target
     void SetTarget(Vector3 target)

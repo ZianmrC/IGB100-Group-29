@@ -29,7 +29,7 @@ public class EnemyHp : MonoBehaviour, IInteractable
 
     public bool Interact(Interactor interactor)
     {
-            takeDamage(1.0f);
+            takeDamage(10.0f);
             return true;
     }
 
@@ -40,6 +40,14 @@ public class EnemyHp : MonoBehaviour, IInteractable
         {
             Destroy(enemy.gameObject);
             Instantiate(deathEffect, transform.position, transform.rotation);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("test");
+        if (other.CompareTag("Bullet"))
+        {
+            takeDamage(1.0f);
         }
     }
 }

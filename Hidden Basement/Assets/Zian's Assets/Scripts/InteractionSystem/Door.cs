@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Door : MonoBehaviour, IInteractable
 {
@@ -11,9 +12,13 @@ public class Door : MonoBehaviour, IInteractable
 
     public string InterationPrompt => _prompt;
     public GameObject text;
+    public GameObject Spawner;
+    public TMP_Text objective;
+    public GameObject gun;
 
     void Start()
     {
+        gun.SetActive(false);
         text.SetActive(false);
     }
     public bool Interact(Interactor interactor)
@@ -26,14 +31,16 @@ public class Door : MonoBehaviour, IInteractable
         {
             //_prompt = "Door is unlocked. press E to open";
             Destroy(gameObject);
-
-            // Load the Win screen scene
+            Spawner.SetActive(true);
+            objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
+            /*
             var sceneSwitcher = FindObjectOfType<SceneSwitcher>();
             if (sceneSwitcher != null)
             {
                 sceneSwitcher.sceneToLoad = "MissionCompleteScreen";
                 sceneSwitcher.LoadScene();
             }
+            */
             return true;
 
         }
