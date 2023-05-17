@@ -19,7 +19,12 @@ public class EnemyVision2 : MonoBehaviour
     private bool beenDetected;
 
     public Image screenFlash;
-    public Vector3 lastKnownPosition;
+    public static Vector3 lastKnownPosition;
+
+    //For Mechanic where if player was detected, all enemies on the same floor converge on the player
+    public bool floor1Enemy;
+    public static bool floor1Detection; //If the player was detected on floor 1
+    public static bool floor2Detection; //If player was detected on floor 2
 
     private void Start()
     {
@@ -28,6 +33,8 @@ public class EnemyVision2 : MonoBehaviour
         audioNormal = music.GetComponents<AudioSource>()[0];
         audioDetected = music.GetComponents<AudioSource>()[1];
         audioDetected.enabled = false;
+
+        screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
     }
 
     private float detectedMusicTimer = 0f;
@@ -72,9 +79,12 @@ public class EnemyVision2 : MonoBehaviour
 
     private void Update()
     {
+        DrawVisionCone();
         // Check if the player is within the view cone and distance
         if (IsPlayerInSight() == true)
         {
+            if (floor1Enemy == true) { floor1Detection = true; }
+            else if (floor1Enemy = false) { floor2Detection = true; }
             screenFlash.enabled = true;
             isPlayerDetected = true;
             IsPlayerWithinAttackRange(); // Update canAttack
@@ -91,6 +101,8 @@ public class EnemyVision2 : MonoBehaviour
         }
         else
         {
+            floor1Detection = false;
+            floor2Detection = false;
             isPlayerDetected = false;
             canAttack = false; // Player is not in sight, so cannot attack
                                // Check if enough time has passed since player was detected
@@ -102,6 +114,7 @@ public class EnemyVision2 : MonoBehaviour
                 isScreenFlashRunning = false;
                 screenFlash.enabled = false;
             }
+            
         }
 
         if (!isPlayerDetected && lastKnownPosition != Vector3.zero)
@@ -111,6 +124,22 @@ public class EnemyVision2 : MonoBehaviour
                 lastKnownPosition = transform.position;
             }
         }
+    }
+    private void DrawVisionCone()
+    {
+        // Calculate the field of view angles
+        float halfFOV = viewAngle / 2f;
+        Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
+        Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
+
+        // Calculate the direction vectors for the left and right rays
+        Vector3 leftRayDirection = leftRayRotation * transform.forward;
+        Vector3 rightRayDirection = rightRayRotation * transform.forward;
+
+        // Draw the vision cone using three rays (forward, left, and right)
+        Debug.DrawRay(transform.position, transform.forward * viewDistance, Color.yellow);
+        Debug.DrawRay(transform.position, leftRayDirection * viewDistance, Color.yellow);
+        Debug.DrawRay(transform.position, rightRayDirection * viewDistance, Color.yellow);
     }
 
     private bool IsPlayerInSight()
@@ -151,7 +180,7 @@ public class EnemyVision2 : MonoBehaviour
         else canAttack = false;
     }
 
-    private void OnDrawGizmosSelected()
+   private void OnDrawGizmosSelected()
     {
         // Draw a wireframe cone to visualize the enemy's vision
         Gizmos.color = Color.yellow;
@@ -160,17 +189,19 @@ public class EnemyVision2 : MonoBehaviour
         Vector3 leftBoundary = Quaternion.Euler(0f, -viewAngle / 2f, 0f) * transform.forward;
         Vector3 rightBoundary = Quaternion.Euler(0f, viewAngle / 2f, 0f) * transform.forward;
 
-        Gizmos.color = Color.red;
+        Gizmos.color = new Color(1f, 1f, 0f, 0.5f); // Yellow with transparency
         Gizmos.DrawRay(transform.position, leftBoundary * viewDistance);
         Gizmos.DrawRay(transform.position, rightBoundary * viewDistance);
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * viewDistance);
-        // Draw a wireframe cone to visualize the enemy's attack range
-        Gizmos.color = Color.green;
+
+        // Draw a wireframe sphere to visualize the enemy's attack range
+        Gizmos.color = new Color(0f, 1f, 0f, 0.5f); // Green with transparency
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, leftBoundary * attackRange);
         Gizmos.DrawRay(transform.position, rightBoundary * attackRange);
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * attackRange);
     }
+
+
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Linq;
 
 public class EnemyPatrol2 : MonoBehaviour
 {
@@ -62,64 +63,78 @@ public class EnemyPatrol2 : MonoBehaviour
         }
         else
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
-            Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
-
-            //If Player is detected and is within attack range
-            if (enemyVision.canAttack == true && enemyVision.isPlayerDetected == true)
+            /*
+            if (EnemyVision2.floor1Detection) //Player detected, all enemies converge on player
             {
-                aware = true;
-                canAttack = true;
-                shooting = true;
-                navMeshAgent.isStopped = true;
-
-                transform.LookAt(lookAtPosition + offset);
-            }
-            //If player is detected and not within attack range
-            else if (enemyVision.isPlayerDetected == true)
-            {
-                aware = true;
-                navMeshAgent.isStopped = false;
-                navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
-                navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
-            }
-            //Player is undetected, resume patrolling
-            else
-            {
-                navMeshAgent.speed = normalMoveSpeed;
-                navMeshAgent.angularSpeed = normalAngularSpeed;
-
-                Patrolling(); // Always call the Patrolling() method when the player is not detected
-
-                // If the enemy was previously aware of the player's presence, move towards the last known position
-                if (aware)
+                GameObject[] floor1Enemies = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.name == "Ch35_nonPBR").ToArray();
+                foreach (GameObject enemy in floor1Enemies)
                 {
-                    navMeshAgent.SetDestination(enemyVision.lastKnownPosition);
-                    if (Vector3.Distance(transform.position, enemyVision.lastKnownPosition) < 0.1f)
+                    Debug.Log("Setting destination for enemy: " + enemy.name);
+                    enemy.GetComponent<NavMeshAgent>().SetDestination(EnemyVision2.lastKnownPosition);
+                }
+
+            }
+            else
+            {*/
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+                Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+                Vector3 offset = new Vector3(0f, 0f, 0f); //Offset lookat function
+
+                //If Player is detected and is within attack range
+                if (enemyVision.canAttack == true && enemyVision.isPlayerDetected == true)
+                {
+                    aware = true;
+                    canAttack = true;
+                    shooting = true;
+                    navMeshAgent.isStopped = true;
+
+                    transform.LookAt(lookAtPosition + offset);
+                }
+                //If player is detected and not within attack range
+                else if (enemyVision.isPlayerDetected == true)
+                {
+                    aware = true;
+                    navMeshAgent.isStopped = false;
+                    navMeshAgent.speed = normalMoveSpeed + detectedMoveSpeedDelta;
+                    navMeshAgent.angularSpeed = normalAngularSpeed + detectedAngularSpeedDelta;
+                }
+                //Player is undetected, resume patrolling
+                else
+                {
+                    navMeshAgent.speed = normalMoveSpeed;
+                    navMeshAgent.angularSpeed = normalAngularSpeed;
+
+                    Patrolling(); // Always call the Patrolling() method when the player is not detected
+
+                    // If the enemy was previously aware of the player's presence, move towards the last known position
+                    if (aware)
                     {
-                        aware = false;
+                        navMeshAgent.SetDestination(EnemyVision2.lastKnownPosition);
+                        if (Vector3.Distance(transform.position, EnemyVision2.lastKnownPosition) < 0.1f)
+                        {
+                            aware = false;
+                        }
                     }
                 }
-            }
-            bool NotStationary = navMeshAgent.velocity.magnitude > 0;
-            gun.SetActive(aware);
-            animator.SetBool("IsAware", aware);
-            animator.SetBool("NotStationary", NotStationary);
+                bool NotStationary = navMeshAgent.velocity.magnitude > 0;
+                gun.SetActive(aware);
+                animator.SetBool("IsAware", aware);
+                animator.SetBool("NotStationary", NotStationary);
 
-            if (NotStationary)
-            {
-                stationaryTime = 0f;
-            }
-            else
-            {
-                stationaryTime += Time.deltaTime;
-                if (stationaryTime > 6f)
+                if (NotStationary)
                 {
-                    navMeshAgent.isStopped = false;
-                    SetTarget(patrolPoints[currentPatrolPointIndex]);
+                    stationaryTime = 0f;
                 }
-            }
+                else
+                {
+                    stationaryTime += Time.deltaTime;
+                    if (stationaryTime > 6f)
+                    {
+                        navMeshAgent.isStopped = false;
+                        SetTarget(patrolPoints[currentPatrolPointIndex]);
+                    }
+                }
+            //}
         }
     }
     IEnumerator Reset()

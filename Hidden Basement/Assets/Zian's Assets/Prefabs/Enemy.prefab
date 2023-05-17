@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 3400957492666638784}
   m_Layer: 6
   m_Name: Ch35_nonPBR
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,7 +412,7 @@ Animator:
   m_GameObject: {fileID: 1033197008808524475}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eec6dadd2a420e8409201bddbbf0aa98, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9c81ba078049e1c418b3c502fd6dba12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -435,14 +435,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c249a716d3016534bb9c769584fa1900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 14
-  viewAngle: 46
-  attackRange: 10
+  viewDistance: 16
+  viewAngle: 55
+  attackRange: 12
   isPlayerDetected: 0
   canAttack: 0
   music: {fileID: 0}
   screenFlash: {fileID: 0}
-  lastKnownPosition: {x: 0, y: 0, z: 0}
+  floor1Enemy: 1
 --- !u!114 &8147124888101801758
 MonoBehaviour:
   m_ObjectHideFlags: 0

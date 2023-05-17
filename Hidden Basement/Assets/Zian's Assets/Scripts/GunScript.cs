@@ -48,7 +48,7 @@ public class GunScript : MonoBehaviour
         bullet.GetComponent<MeshRenderer>().material.color = Color.red; // Change bullet color to red
 
         // Destroy the bullet after a certain time (optional)
-        Destroy(bullet, 5f);
+        Destroy(bullet, 1f);
     }
 
 

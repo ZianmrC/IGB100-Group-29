@@ -94,8 +94,8 @@ public class EnemySearch : MonoBehaviour
                 // If the enemy was previously aware of the player's presence, move towards the last known position
                 if (aware)
                 {
-                    navMeshAgent.SetDestination(enemyVision.lastKnownPosition);
-                    if (Vector3.Distance(transform.position, enemyVision.lastKnownPosition) < 0.1f)
+                    navMeshAgent.SetDestination(EnemyVision2.lastKnownPosition);
+                    if (Vector3.Distance(transform.position, EnemyVision2.lastKnownPosition) < 0.1f)
                     {
                         aware = false;
                     }

@@ -12,6 +12,7 @@ public class ItemCounter : MonoBehaviour
     //public TMP_Text keyCountText;
     public int key = 0;
     public int keycount = 0;
+    private int keyint = 0;
 
     void Awake()
     {
@@ -30,8 +31,13 @@ public class ItemCounter : MonoBehaviour
         keyText.text = "Keys " + key.ToString() + "/6";
         if (keycount < key)
         {
-            PlayerPrefs.SetInt("Key",key);
-
+            PlayerPrefs.SetInt("Key", key);
+        }
+        keyint++;
+        Debug.Log(keyint);
+        if (keyint == 6)
+        {
+            keyText.text = "Unlock the Door in the Basement";
         }
     }
 }
