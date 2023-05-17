@@ -10,6 +10,7 @@ public class GunScript : MonoBehaviour
     public float projectileVelocity = 50f; // Velocity of the bullet
     public GameObject gun;
     public bool gunVisibility; // Allows gun to be visisble
+    public AudioClip gunShot;
 
     private float nextFireTime;          // Time of the next allowed shot
 
@@ -20,7 +21,7 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        if (gunVisibility == true)
+        if (gunVisibility == true && gun.activeSelf == true)
         {
             // Check for fire input (e.g. left mouse button)
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
@@ -35,6 +36,7 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
+        AudioSource.PlayClipAtPoint(gunShot, transform.position);//Play audio for gunshot
         // Instantiate a new bullet from the bullet prefab
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
@@ -46,6 +48,7 @@ public class GunScript : MonoBehaviour
 
         bulletRigidbody.velocity = firePoint.TransformDirection(Vector3.forward) * projectileVelocity; // Set bullet velocity based on projectileVelocity
         bullet.GetComponent<MeshRenderer>().material.color = Color.red; // Change bullet color to red
+
 
         // Destroy the bullet after a certain time (optional)
         Destroy(bullet, 1f);

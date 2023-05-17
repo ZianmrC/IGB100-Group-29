@@ -9,5 +9,6 @@ Music was Found in: https://pixabay.com/music/search/spy/
 https://www.youtube.com/watch?v=VMziMXYkVS0&ab_channel=ArgsoundBackgroundMusic
 
 SFX:
-1. Gun Shot SFX: https://www.videvo.net/sound-effect/gunshot-single-hit-lig-pe1108102/246189/
+1. Enemy Gun Shot SFX: https://www.videvo.net/sound-effect/gunshot-single-hit-lig-pe1108102/246189/
 2. Click SFX: https://mixkit.co/free-sound-effects/click/ (Hard typewriter click)
+3. Player Gun Shot SFX: https://www.youtube.com/watch?v=rjnSItesRTk&ab_channel=GREEN

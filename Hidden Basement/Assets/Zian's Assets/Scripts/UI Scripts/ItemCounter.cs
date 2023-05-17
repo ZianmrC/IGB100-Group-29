@@ -34,7 +34,6 @@ public class ItemCounter : MonoBehaviour
             PlayerPrefs.SetInt("Key", key);
         }
         keyint++;
-        Debug.Log(keyint);
         if (keyint == 6)
         {
             keyText.text = "Unlock the Door in the Basement";
