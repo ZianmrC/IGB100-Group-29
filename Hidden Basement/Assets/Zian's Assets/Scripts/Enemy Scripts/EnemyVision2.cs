@@ -14,17 +14,20 @@ public class EnemyVision2 : MonoBehaviour
     private float detectionStartTime = 0f;
     public bool canAttack;
     public GameObject music; //Reference to Music GameObject
+    public static bool NormalAudio;
     private AudioSource audioNormal;
     private AudioSource audioDetected;
     private bool beenDetected;
 
     public Image screenFlash;
     public static Vector3 lastKnownPosition;
+    public static bool isScreenFlashRunning = false;
+
+    public GameObject enemy;
 
     //For Mechanic where if player was detected, all enemies on the same floor converge on the player
     public bool floor1Enemy;
-    public static bool floor1Detection; //If the player was detected on floor 1
-    public static bool floor2Detection; //If player was detected on floor 2
+    public static bool PlayerDetected; //Bool to share if at least 1 enemy has detected player
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class EnemyVision2 : MonoBehaviour
         audioDetected.enabled = false;
 
         screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
+        NormalAudio = true;
     }
 
     private float detectedMusicTimer = 0f;
@@ -43,13 +47,13 @@ public class EnemyVision2 : MonoBehaviour
     private float beenDetectedTime = 0f;
     private float debugPrintInterval = 4f;
     private bool hasPrintedDebug = true;
-    private bool isScreenFlashRunning = false;
     private float flashDuration = 0.75f;
     private float flashMaxAlpha = 0.3f;
 
 
     private IEnumerator ScreenFlashCoroutine()
     {
+        screenFlash.enabled = true;
         while (true)
         {
             float timer = 0f;
@@ -83,34 +87,40 @@ public class EnemyVision2 : MonoBehaviour
         // Check if the player is within the view cone and distance
         if (IsPlayerInSight() == true)
         {
-            if (floor1Enemy == true) { floor1Detection = true; }
-            else if (floor1Enemy = false) { floor2Detection = true; }
             screenFlash.enabled = true;
             isPlayerDetected = true;
             IsPlayerWithinAttackRange(); // Update canAttack
             lastKnownPosition = player.transform.position; // Update lastKnownPosition
-            audioNormal.enabled = false;
-            audioDetected.enabled = true;
+            if (NormalAudio == true)
+            {
+                audioNormal.enabled = false;
+                audioDetected.enabled = true;
+                NormalAudio = false;
+            }
             beenDetectedTime = Time.time; // Set the time when player is detected
             hasPrintedDebug = false; // Reset the flag
-            if (!isScreenFlashRunning)
+            if (isScreenFlashRunning == false)
             {
                 isScreenFlashRunning = true;
                 StartCoroutine(ScreenFlashCoroutine());
             }
+            PlayerDetected = true;
         }
         else
         {
-            floor1Detection = false;
-            floor2Detection = false;
+            PlayerDetected = false;
             isPlayerDetected = false;
             canAttack = false; // Player is not in sight, so cannot attack
                                // Check if enough time has passed since player was detected
             if (Time.time - beenDetectedTime >= detectedMusicDuration && !hasPrintedDebug)
             {
+                if (NormalAudio == false)
+                {
+                    audioNormal.enabled = true;
+                    audioDetected.enabled = false;
+                    NormalAudio = true;
+                }
                 hasPrintedDebug = true;
-                audioNormal.enabled = true;
-                audioDetected.enabled = false;
                 isScreenFlashRunning = false;
                 screenFlash.enabled = false;
             }

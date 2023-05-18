@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private float _interactionPointRadius = 0.5f;
     [SerializeField] private LayerMask _interactableMask;
+    public TextMeshProUGUI promptText;
     //[SerializeField] private InteractionPromptUi _interactionPromptUi;
 
     private readonly Collider[] _colliders = new Collider[4];
     [SerializeField] private int _numFound;
 
+    public GameObject InteractableGameObject => gameObject;
     private IInteractable _interactable;
+    private GameObject _interactableGameObject;
+
+    private void Start()
+    {
+    }
 
     private void Update()
     {
@@ -29,11 +37,34 @@ public class Interactor : MonoBehaviour
                 //{
                 //   _interactionPromptUi.SetUp(_interactable.InterationPrompt);
                 //}
+                GameObject interactableObject = (_interactable as Component)?.gameObject;
 
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (interactableObject.name == "Ch35_nonPBR" && EnemyVision2.PlayerDetected == false)
                 {
-                    _interactable.Interact(this);
+                    promptText.text = "Press 'e' to perform stealth takedown";
                 }
+                else if (interactableObject.name.Contains(" Key"))
+                {
+                    promptText.text = "Press 'e' to pick up key";
+                }
+                else if (interactableObject.name == "Door")
+                {
+                    promptText.text = "Press 'e' to open door";
+                }
+
+                if (_interactable != null)
+                {
+
+                    if (Keyboard.current.eKey.wasPressedThisFrame)
+                    {
+                        if (interactableObject.name == "Ch35_nonPBR" && EnemyVision2.PlayerDetected)
+                        {
+                            return;
+                        }
+                        else { _interactable.Interact(this); }
+                    }
+                }
+
             }
             else
             {
@@ -47,6 +78,10 @@ public class Interactor : MonoBehaviour
                    // _interactionPromptUi.Close();
                 //}
             }
+        }
+        else
+        {
+            promptText.text = "";
         }
     }
 

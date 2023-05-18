@@ -1897,6 +1897,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 5205165791642202465}
   _prompt: 
+  audioNormal: {fileID: 0}
+  audioDetected: {fileID: 0}
+  screenFlash: {fileID: 0}
+  music: {fileID: 0}
 --- !u!136 &5877724400651080670
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2818,10 +2822,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 2
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 5205165791642202465}
   _prompt: 
+  audioNormal: {fileID: 0}
+  audioDetected: {fileID: 0}
+  screenFlash: {fileID: 0}
+  music: {fileID: 0}
 --- !u!114 &7688303132820690826
 MonoBehaviour:
   m_ObjectHideFlags: 0

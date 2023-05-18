@@ -8,6 +8,7 @@ using TMPro;
 public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
+    public GameObject InteractableGameObject => gameObject;
     SceneSwitcher sceneSwitcher;
 
     public string InterationPrompt => _prompt;
@@ -15,6 +16,10 @@ public class Door : MonoBehaviour, IInteractable
     public GameObject Spawner;
     public TMP_Text objective;
     public GameObject gun;
+
+    //Win Conditions
+    public GameObject escape1;
+    public GameObject escape2;
 
     void Start()
     {
@@ -32,6 +37,8 @@ public class Door : MonoBehaviour, IInteractable
             //_prompt = "Door is unlocked. press E to open";
             Destroy(gameObject);
             Spawner.SetActive(true);
+            escape1.SetActive(true);
+            escape2.SetActive(true);
             objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
             /*
             var sceneSwitcher = FindObjectOfType<SceneSwitcher>();

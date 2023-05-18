@@ -6,7 +6,7 @@ public class YellowKey : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
 
-
+    public GameObject InteractableGameObject => gameObject;
 
     public string InterationPrompt => _prompt;
 

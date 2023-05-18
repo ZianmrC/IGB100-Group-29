@@ -374,10 +374,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033197008808524475}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2932250865894360746, guid: 64492de6f35e04f4ea898c8732c344d5, type: 3}
 --- !u!195 &6804771711545956776
@@ -442,6 +442,7 @@ MonoBehaviour:
   canAttack: 0
   music: {fileID: 0}
   screenFlash: {fileID: 0}
+  enemy: {fileID: 1033197008808524475}
   floor1Enemy: 1
 --- !u!114 &8147124888101801758
 MonoBehaviour:
@@ -506,6 +507,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 1033197008808524475}
   _prompt: 
+  audioNormal: {fileID: 0}
+  audioDetected: {fileID: 0}
+  screenFlash: {fileID: 0}
+  music: {fileID: 0}
 --- !u!1 &1114396556234719065
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +944,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 2381145399858956630}
   _prompt: 
+  audioNormal: {fileID: 0}
+  audioDetected: {fileID: 0}
+  screenFlash: {fileID: 0}
+  music: {fileID: 0}
 --- !u!136 &4082001406759480297
 CapsuleCollider:
   m_ObjectHideFlags: 0

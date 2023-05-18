@@ -130,8 +130,8 @@ public class EnemySearch : MonoBehaviour
                 }
             }
         }
-        Debug.Log(EnemyVisionSearch.Detection);
-        Debug.Log(EnemyVisionSearch.lastKnownPosition);
+        //Debug.Log(EnemyVisionSearch.Detection);
+       // Debug.Log(EnemyVisionSearch.lastKnownPosition);
     }
 
     private Vector3 lastPosition;

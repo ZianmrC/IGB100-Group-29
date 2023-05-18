@@ -5,7 +5,7 @@ using UnityEngine;
 public class PurpleKey : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
-
+    public GameObject InteractableGameObject => gameObject;
 
 
     public string InterationPrompt => _prompt;

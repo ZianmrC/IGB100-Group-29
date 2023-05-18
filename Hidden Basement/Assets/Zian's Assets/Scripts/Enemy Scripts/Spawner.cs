@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints; // Array of spawn points
-    public Transform[] prespawnPoints; //Array of spawn points upon initialization
+    public GameObject[] prespawnEnemies; //Array of spawn points upon initialization
     public GameObject enemyPrefab; // Enemy GameObject to spawn
     public float spawnTimer = 2f; // Time interval between spawns
 
@@ -17,9 +17,9 @@ public class Spawner : MonoBehaviour
     {
         // Start the timer at a random value to avoid all enemies spawning at once
         timer = Random.Range(0f, spawnTimer);
-        foreach (Transform spawnPoint in prespawnPoints)
+        foreach (GameObject spawnPoint in prespawnEnemies)
         {
-            SpawnEnemy(spawnPoint);
+            spawnPoint.SetActive(true);
         }
         gun.SetActive(true);
     }

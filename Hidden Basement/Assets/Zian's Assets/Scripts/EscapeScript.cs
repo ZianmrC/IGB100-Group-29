@@ -7,7 +7,6 @@ public class EscapeScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("test");
         if (other.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneToLoad);
