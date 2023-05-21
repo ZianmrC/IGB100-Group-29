@@ -9,6 +9,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private TextMeshProUGUI itemNameText;
 
+
     private ContextMenuItemAttribute itemBeingPickedUp;
 
     private void Update()

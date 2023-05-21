@@ -19,6 +19,8 @@ public class Interactor : MonoBehaviour
     private IInteractable _interactable;
     private GameObject _interactableGameObject;
 
+    [SerializeField] private GameObject inHandItem;
+
     private void Start()
     {
     }
