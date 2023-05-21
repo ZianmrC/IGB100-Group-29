@@ -7,19 +7,31 @@ using TMPro;
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform _interactionPoint;
+
     [SerializeField] private float _interactionPointRadius = 0.5f;
+
     [SerializeField] private LayerMask _interactableMask;
+
     public TextMeshProUGUI promptText;
     //[SerializeField] private InteractionPromptUi _interactionPromptUi;
 
     private readonly Collider[] _colliders = new Collider[4];
+
     [SerializeField] private int _numFound;
 
     public GameObject InteractableGameObject => gameObject;
+
     private IInteractable _interactable;
+
     private GameObject _interactableGameObject;
 
+    public GameObject book1;
+    public GameObject book2;
+    public GameObject book3;
+
     [SerializeField] private GameObject inHandItem;
+
+    [SerializeField] private Transform pickUpParent;
 
     private void Start()
     {
@@ -28,6 +40,11 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
+
+        if (inHandItem != null)
+        {
+            return;
+        }
 
         if (_numFound > 0)
         {
@@ -56,13 +73,30 @@ public class Interactor : MonoBehaviour
 
                 if (_interactable != null)
                 {
-
                     if (Keyboard.current.eKey.wasPressedThisFrame)
                     {
                         if (interactableObject.name == "Ch35_nonPBR" && EnemyVision2.PlayerDetected)
                         {
                             return;
                         }
+                       // else if(interactableObject.name == "Book_1")
+                      //  {
+                      //      inHandItem = book1;
+                       //     inHandItem.transform.SetParent(pickUpParent.transform, false);
+                       //     return;
+                       // }
+                       // else if (interactableObject.name == "Book_2")
+                        //{
+                         //   inHandItem = book2;
+                         //   inHandItem.transform.SetParent(pickUpParent.transform, false);
+                       //     return;
+                        //}
+                        //else if (interactableObject.name == "Book_3")
+                       // {
+                       //     inHandItem = book3;
+                       //     inHandItem.transform.SetParent(pickUpParent.transform, false);
+                        //    return;
+                       // }
                         else { _interactable.Interact(this); }
                     }
                 }
@@ -83,7 +117,8 @@ public class Interactor : MonoBehaviour
         }
         else
         {
-            promptText.text = "";
+            //promptText.text = "";
+            return;
         }
     }
 
