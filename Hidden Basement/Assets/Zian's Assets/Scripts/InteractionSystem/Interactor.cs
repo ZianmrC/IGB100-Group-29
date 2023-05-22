@@ -8,6 +8,7 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform _interactionPoint;
 
+
     [SerializeField] private float _interactionPointRadius = 0.5f;
 
     [SerializeField] private LayerMask _interactableMask;
@@ -25,9 +26,13 @@ public class Interactor : MonoBehaviour
 
     private GameObject _interactableGameObject;
 
-    public GameObject book1;
-    public GameObject book2;
-    public GameObject book3;
+    [SerializeField] private LayerMask pickableLayerMask;
+
+    [SerializeField] private Transform playerCameraTransform;
+
+    [SerializeField] [Min(1)] private float hitRange = 3;
+
+    private RaycastHit hit;
 
     [SerializeField] private GameObject inHandItem;
 
@@ -39,12 +44,14 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
+        Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * hitRange, Color.red);
 
         if (inHandItem != null)
         {
             return;
         }
+
+        _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
         if (_numFound > 0)
         {
