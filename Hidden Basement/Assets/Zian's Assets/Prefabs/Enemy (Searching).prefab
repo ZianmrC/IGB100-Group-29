@@ -1517,7 +1517,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2932250865894360746, guid: 64492de6f35e04f4ea898c8732c344d5, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: b8b0747d20f36f04a88121eeab1d7497, type: 3}
   m_Bones:
   - {fileID: 3293236784084233753}
   - {fileID: 7623662394232908691}
@@ -2722,7 +2722,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2932250865894360746, guid: 64492de6f35e04f4ea898c8732c344d5, type: 3}
+  m_Mesh: {fileID: 2932250865894360746, guid: b8b0747d20f36f04a88121eeab1d7497, type: 3}
 --- !u!195 &3988102688950575519
 NavMeshAgent:
   m_ObjectHideFlags: 0

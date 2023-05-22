@@ -1,34 +1,40 @@
 using UnityEngine;
+using System.Collections;
 
 public class GunScript : MonoBehaviour
 {
-    public GameObject bulletPrefab;         // Prefab of the bullet to shoot
-    public Transform firePoint;            // Transform representing the position where the bullet should be spawned
-    public float range = 100f;             // Maximum range of the bullet
-    public int damage = 10;               // Damage of the bullet
-    public float fireRate = 2f;         // Rate of fire in seconds (e.g. 0.1f means 10 bullets per second)
-    public float projectileVelocity = 50f; // Velocity of the bullet
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float range = 100f;
+    public int damage = 10;
+    public float fireRate = 2f;
+    public float projectileVelocity;
+    public float upwardForce;
     public GameObject gun;
-    public bool gunVisibility; // Allows gun to be visisble
+    public bool gunVisibility;
     public AudioClip gunShot;
+    public GameObject muzzleFlash;
 
-    private float nextFireTime;          // Time of the next allowed shot
+    public float recoilRotation = 30f; // Adjust this value to control the recoil rotation
+    public float recoilDuration = 0.2f;
+    public float returnSpeed = 5f;
+
+    private float nextFireTime;
+    private Quaternion originalGunRotation;
 
     void Start()
     {
         gun.SetActive(gunVisibility);
+        originalGunRotation = gun.transform.localRotation;
     }
 
     void Update()
     {
-        if (gunVisibility == true && gun.activeSelf == true)
+        if (gunVisibility && gun.activeSelf)
         {
-            // Check for fire input (e.g. left mouse button)
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
             {
-                // Shoot a bullet
                 Shoot();
-                // Update the next allowed shot time
                 nextFireTime = Time.time + 1f / fireRate;
             }
         }
@@ -36,23 +42,51 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
-        AudioSource.PlayClipAtPoint(gunShot, transform.position);//Play audio for gunshot
-        // Instantiate a new bullet from the bullet prefab
+        AudioSource.PlayClipAtPoint(gunShot, transform.position);
+        muzzleFlash.SetActive(true);
+        StartCoroutine(DeactivateMuzzleFlash());
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        // Set bullet properties directly on the bullet object
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
-        // Set collision detection mode to ContinuousDynamic
         bulletRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
-        bulletRigidbody.velocity = firePoint.TransformDirection(Vector3.forward) * projectileVelocity; // Set bullet velocity based on projectileVelocity
-        bullet.GetComponent<MeshRenderer>().material.color = Color.red; // Change bullet color to red
+        Vector3 bulletVelocity = firePoint.TransformDirection(Vector3.forward) * projectileVelocity;
+        bulletVelocity += Vector3.up * upwardForce;
+        bulletRigidbody.velocity = bulletVelocity;
 
+        bullet.GetComponent<MeshRenderer>().material.color = Color.red;
 
-        // Destroy the bullet after a certain time (optional)
         Destroy(bullet, 1f);
+
+        StartCoroutine(RecoilGun());
     }
 
+    private IEnumerator DeactivateMuzzleFlash()
+    {
+        yield return new WaitForSeconds(0.2f);
+        muzzleFlash.SetActive(false);
+    }
+
+    private IEnumerator RecoilGun()
+    {
+        Quaternion targetRotation = Quaternion.Euler(-recoilRotation, 0f, 0f); // Rotate around the x-axis
+        float timer = 0f;
+
+        while (timer < recoilDuration)
+        {
+            timer += Time.deltaTime;
+            gun.transform.localRotation = Quaternion.Lerp(originalGunRotation, targetRotation, timer / recoilDuration);
+            yield return null;
+        }
+
+        timer = 0f;
+
+        while (timer < recoilDuration)
+        {
+            timer += Time.deltaTime;
+            gun.transform.localRotation = Quaternion.Lerp(targetRotation, originalGunRotation, timer / recoilDuration);
+            yield return null;
+        }
+    }
 
 }

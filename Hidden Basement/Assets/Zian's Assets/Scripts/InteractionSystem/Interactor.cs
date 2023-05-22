@@ -117,7 +117,7 @@ public class Interactor : MonoBehaviour
         }
         else
         {
-            //promptText.text = "";
+            promptText.text = "";
             return;
         }
     }
