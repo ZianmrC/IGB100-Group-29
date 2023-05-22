@@ -36,9 +36,11 @@ public class Door : MonoBehaviour, IInteractable
         {
             //_prompt = "Door is unlocked. press E to open";
             Destroy(gameObject);
+            /*
             Spawner.SetActive(true);
             escape1.SetActive(true);
             escape2.SetActive(true);
+            */
             objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
             /*
             var sceneSwitcher = FindObjectOfType<SceneSwitcher>();
