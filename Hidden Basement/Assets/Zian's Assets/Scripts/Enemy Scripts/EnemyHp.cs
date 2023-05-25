@@ -5,46 +5,44 @@ using UnityEngine.UI;
 
 public class EnemyHp : MonoBehaviour, IInteractable
 {
-    public float health = 1.0f;
+    public float maxHealth;
+    private float health;
     public GameObject deathEffect;
     public GameObject enemy;
+    public GameObject parentObject; //The overall parent object of the enemy
     [SerializeField] private string _prompt;
+    [SerializeField] private bool Phase1Enemy;
 
-    //Disable Detection UI effects if Enemy is killed
+    // Disable Detection UI effects if Enemy is killed
     public AudioSource audioNormal;
     public AudioSource audioDetected;
     public Image screenFlash;
     public GameObject music;
 
-    //private EnemyVision sight;
+    private List<Transform> childObjects = new List<Transform>();
 
     public string InterationPrompt => _prompt;
     public GameObject InteractableGameObject => gameObject;
 
-
-    //private void Update()
-    //{
-    //    if (sight.inSight == true && sight.isPlayerDetected == true)
-    //   {
-    //       health = 999.0f;
-    //    }
-    //    else
-    //    {
-    //        health = 1.0f;
-    //    }
-    // }
     private void Start()
     {
+        health = maxHealth;
         music = GameObject.Find("Music");
         audioNormal = music.GetComponents<AudioSource>()[0];
         audioDetected = music.GetComponents<AudioSource>()[1];
         screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
+
+        // Get references to all child objects
+        foreach (Transform child in enemy.transform)
+        {
+            childObjects.Add(child);
+        }
     }
 
     public bool Interact(Interactor interactor)
     {
-            takeDamage(10.0f);
-            return true;
+        takeDamage(10.0f);
+        return true;
     }
 
     public void takeDamage(float damage)
@@ -52,7 +50,9 @@ public class EnemyHp : MonoBehaviour, IInteractable
         health -= damage;
         if (health <= 0.0f)
         {
-            Destroy(enemy.gameObject);
+            // Disable child objects
+            DisableChildObjects();
+
             Instantiate(deathEffect, transform.position, transform.rotation);
             if (EnemyVision2.isScreenFlashRunning == true)
             {
@@ -65,13 +65,38 @@ public class EnemyHp : MonoBehaviour, IInteractable
                 audioNormal.enabled = true;
                 EnemyVision2.NormalAudio = true;
             }
+            if (Phase1Enemy == true)
+            {
+                health = maxHealth;
+                gameObject.SetActive(true);
+                StartCoroutine(RespawnTimer());
+            }
         }
     }
+
+    private void DisableChildObjects()
+    {
+        // Disable each child object
+        Respawner.DisableFunctionality(enemy);
+        foreach (Transform child in childObjects)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
             takeDamage(1.0f);
         }
+    }        
+
+    private IEnumerator RespawnTimer()
+    {
+        yield return new WaitForSeconds(15f);
+        Respawner.RespawnEnemy(parentObject);
+        Respawner.RespawnEnemy(enemy);
+        Respawner.EnableFunctionality(enemy);
     }
 }

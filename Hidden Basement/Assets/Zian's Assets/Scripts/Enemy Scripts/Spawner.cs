@@ -55,5 +55,13 @@ public class Spawner : MonoBehaviour
         // Instantiate the enemy at the chosen spawn point
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
+    public static void RespawnEnemy(GameObject enemy)
+    {
+        enemy.SetActive(true);
+        foreach (Transform child in enemy.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
 
 }
