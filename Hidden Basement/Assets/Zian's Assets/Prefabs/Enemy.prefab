@@ -444,6 +444,7 @@ MonoBehaviour:
   screenFlash: {fileID: 0}
   enemy: {fileID: 1033197008808524475}
   floor1Enemy: 1
+  detectedText: {fileID: 0}
 --- !u!114 &8147124888101801758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 1033197008808524475}
   parentObject: {fileID: 2381145399858956630}
@@ -942,7 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f93eb693d0b2b4da37d344e4616771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
   deathEffect: {fileID: 1717830622740436, guid: b33b866fc6f37be4f895c679d6ac00cc, type: 3}
   enemy: {fileID: 1033197008808524475}
   parentObject: {fileID: 2381145399858956630}

@@ -89,6 +89,7 @@ public class EnemyHp : MonoBehaviour, IInteractable
         if (other.CompareTag("Bullet"))
         {
             takeDamage(1.0f);
+            Debug.Log("Hit!");
         }
     }        
 

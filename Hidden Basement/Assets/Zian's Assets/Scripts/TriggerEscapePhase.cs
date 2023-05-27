@@ -14,11 +14,13 @@ public class TriggerEscapePhase : MonoBehaviour
     private GameObject textObject;
     public GameObject gun;
     public Text tooltip;
+    private Image reticle;
 
     public bool secondPhase; //Editable boolean to trigger 2nd phase or not
 
     void Start()
     {
+        reticle = GameObject.Find("Reticle").GetComponent<Image>();
         triggerObject = GameObject.Find("PlayerCapsule");
         gun = GameObject.Find("M1911 Handgun_Silver");
         if (secondPhase == true)
@@ -52,6 +54,7 @@ public class TriggerEscapePhase : MonoBehaviour
     }
     private void Trigger2ndPhase(bool yesorno)
     {
+        reticle.enabled = yesorno;
         Spawner.SetActive(yesorno);
         escape1.SetActive(yesorno);
         escape2.SetActive(yesorno);
