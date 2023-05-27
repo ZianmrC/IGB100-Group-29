@@ -12,11 +12,15 @@ public class Door : MonoBehaviour, IInteractable
     SceneSwitcher sceneSwitcher;
 
     public string InterationPrompt => _prompt;
-    public GameObject text;
+    public Text text;
+    public TextMeshProUGUI objective;
+
+    public static bool doorUnlocked; //Boolean to represent if the door has been unlocked
 
     void Start()
     {
-        text.SetActive(false);
+        doorUnlocked = false;
+        text.gameObject.SetActive(false);
     }
     public bool Interact(Interactor interactor)
     {
@@ -35,17 +39,19 @@ public class Door : MonoBehaviour, IInteractable
                 sceneSwitcher.sceneToLoad = "MissionCompleteScreen";
                 sceneSwitcher.LoadScene();
             }
-            
+            objective.text = "Free the Hostage";
+            doorUnlocked = true;
             return true;
 
         }
-        text.SetActive(true);
-        Invoke("SetInactive", 5f);
+        text.gameObject.SetActive(true);
+        text.text = $"Missing {6 - ItemCounter.key} out of 6 keys, keep searching the floors above";
+        Invoke("SetActive", 5f);
         return false;
         
     }
-    public void SetInactive()
+    public void SetActive()
     {
-        text.SetActive(false);
+        text.gameObject.SetActive(false);
     }
 }
