@@ -7,7 +7,7 @@ public class DetectBook : MonoBehaviour
     public GameObject book;
 
     public Transform here;
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == book)
@@ -15,4 +15,5 @@ public class DetectBook : MonoBehaviour
             GetComponent<PickUp>().transform.position = here.position;
         }
     }
+    */
 }

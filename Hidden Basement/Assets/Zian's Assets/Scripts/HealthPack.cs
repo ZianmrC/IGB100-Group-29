@@ -20,6 +20,7 @@ public class HealthPack : MonoBehaviour, IInteractable
         text = textObject.GetComponent<Text>();
         player = GameObject.Find("Capsule");
         playerHealth = player.GetComponent<PlayerHealth>();
+        textObject.SetActive(true);
     }
 
     // Update is called once per frame

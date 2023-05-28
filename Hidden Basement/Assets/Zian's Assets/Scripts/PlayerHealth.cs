@@ -23,13 +23,12 @@ public class PlayerHealth : MonoBehaviour
     //Variables to disable once the player dies
     private GameObject playerCamera;
     private GameObject playerCapsule;
-    private GameObject gun;
+    public GameObject gun;
     CharacterController characterController;
     void Start()
     {
         playerCamera = GameObject.Find("PlayerFollowCamera");
         playerCapsule = GameObject.Find("PlayerCapsule");
-        gun = GameObject.Find("M1911 Handgun_Silver");
         characterController = playerCapsule.GetComponent<CharacterController>();
         fadeOverlay.gameObject.SetActive(false);
         currentHealth = maxHealth;
