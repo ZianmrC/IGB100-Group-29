@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DetectBook : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject book;
 
-    // Update is called once per frame
-    void Update()
+    public Transform here;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject == book)
+        {
+            GetComponent<PickUp>().transform.position = here.position;
+        }
     }
 }
