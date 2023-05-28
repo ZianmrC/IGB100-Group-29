@@ -11,7 +11,6 @@ public class GunScript : MonoBehaviour
     public float projectileVelocity;
     public float upwardForce;
     public GameObject gun;
-    public bool gunVisibility;
     public AudioClip gunShot;
     public GameObject muzzleFlash;
 
@@ -24,13 +23,12 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
-        gun.SetActive(gunVisibility);
         originalGunRotation = gun.transform.localRotation;
     }
 
     void Update()
     {
-        if (gunVisibility && gun.activeSelf)
+        if (gun.activeSelf)
         {
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
             {

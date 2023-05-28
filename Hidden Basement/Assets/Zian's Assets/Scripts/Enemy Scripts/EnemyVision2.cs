@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyVision2 : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class EnemyVision2 : MonoBehaviour
         audioDetected.enabled = false;
 
         screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
+        detectedText = GameObject.Find("Detected Text")?.GetComponent<TextMeshProUGUI>();
         NormalAudio = true;
     }
 
@@ -50,10 +52,12 @@ public class EnemyVision2 : MonoBehaviour
     private float flashDuration = 0.75f;
     private float flashMaxAlpha = 0.3f;
 
+    public TextMeshProUGUI detectedText;
 
     private IEnumerator ScreenFlashCoroutine()
     {
         screenFlash.enabled = true;
+        detectedText.enabled = true;
         while (true)
         {
             float timer = 0f;
@@ -61,6 +65,7 @@ public class EnemyVision2 : MonoBehaviour
             {
                 float alpha = Mathf.Lerp(0, flashMaxAlpha, timer / flashDuration);
                 screenFlash.color = new Color(1, 0, 0, alpha);
+                detectedText.color = new Color(1, 0, 0, alpha);
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -70,15 +75,22 @@ public class EnemyVision2 : MonoBehaviour
             {
                 float alpha = Mathf.Lerp(flashMaxAlpha, 0, timer / flashDuration);
                 screenFlash.color = new Color(1, 0, 0, alpha);
+                detectedText.color = new Color(1, 0, 0, alpha);
                 timer += Time.deltaTime;
                 yield return null;
             }
 
             // Set the flag to false when the coroutine is finished
             isScreenFlashRunning = false;
+
+            // Deactivate the screen flash and detected text
+            screenFlash.enabled = false;
+            detectedText.enabled = false;
+
             yield return null;
         }
     }
+
 
 
     private void Update()
@@ -88,6 +100,7 @@ public class EnemyVision2 : MonoBehaviour
         if (IsPlayerInSight() == true)
         {
             screenFlash.enabled = true;
+            detectedText.enabled = true;
             isPlayerDetected = true;
             IsPlayerWithinAttackRange(); // Update canAttack
             lastKnownPosition = player.transform.position; // Update lastKnownPosition
@@ -123,6 +136,7 @@ public class EnemyVision2 : MonoBehaviour
                 hasPrintedDebug = true;
                 isScreenFlashRunning = false;
                 screenFlash.enabled = false;
+                detectedText.enabled = false;
             }
             
         }

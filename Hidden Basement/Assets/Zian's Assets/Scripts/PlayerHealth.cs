@@ -19,8 +19,18 @@ public class PlayerHealth : MonoBehaviour
     public float fadeDuration = 1.0f; // Duration of the fade-in effect in seconds
 
     private float currentFadeTime = 0.0f; // Time elapsed since the fade-in effect started
+
+    //Variables to disable once the player dies
+    private GameObject playerCamera;
+    private GameObject playerCapsule;
+    private GameObject gun;
+    CharacterController characterController;
     void Start()
     {
+        playerCamera = GameObject.Find("PlayerFollowCamera");
+        playerCapsule = GameObject.Find("PlayerCapsule");
+        gun = GameObject.Find("M1911 Handgun_Silver");
+        characterController = playerCapsule.GetComponent<CharacterController>();
         fadeOverlay.gameObject.SetActive(false);
         currentHealth = maxHealth;
         Cursor.visible = false;
@@ -38,6 +48,10 @@ public class PlayerHealth : MonoBehaviour
 
             // Load the "DeathScreen" scene after the fade-out effect is complete
             StartCoroutine(LoadDeathScreen());
+            //Disable Player movement and camera
+            characterController.enabled = false;
+            playerCamera.SetActive(false);
+            gun.SetActive(false);
         }
 
         // Check if enough time has elapsed since last health regeneration
