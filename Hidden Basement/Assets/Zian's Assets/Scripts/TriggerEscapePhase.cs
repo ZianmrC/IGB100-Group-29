@@ -16,20 +16,28 @@ public class TriggerEscapePhase : MonoBehaviour
     public Text tooltip;
     private Image reticle;
 
+    //Reference Hostage
+    private GameObject hostage;
+    private Hostage hostageScript;
+
     public bool secondPhase; //Editable boolean to trigger 2nd phase or not
 
     void Start()
     {
+        hostage = GameObject.Find("Hostage");
+        hostageScript = hostage.GetComponent<Hostage>();
         reticle = GameObject.Find("Reticle").GetComponent<Image>();
         triggerObject = GameObject.Find("PlayerCapsule");
         gun = GameObject.Find("M1911 Handgun_Silver");
         if (secondPhase == true)
         {
             Trigger2ndPhase(true);
+            //Debug.Log("test1");
         }
         else
         {
             Trigger2ndPhase(false);
+            //Debug.Log("test2");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -58,7 +66,11 @@ public class TriggerEscapePhase : MonoBehaviour
         Spawner.SetActive(yesorno);
         escape1.SetActive(yesorno);
         escape2.SetActive(yesorno);
-        objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
+        if (yesorno == true)
+        {
+            objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
+            hostageScript.thankful = true;
+        }
         gun.SetActive(yesorno);
 
     }

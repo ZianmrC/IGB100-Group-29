@@ -1855,6 +1855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6872201797177453057}
   - component: {fileID: 6400827156421496296}
+  - component: {fileID: 649441183}
   m_Layer: 0
   m_Name: Hostage
   m_TagString: Untagged
@@ -1871,7 +1872,7 @@ Transform:
   m_GameObject: {fileID: 6058792524978352315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 69.207, y: 1.371, z: -41.982}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6869681464904469877}
@@ -1908,6 +1909,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &649441183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058792524978352315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb07cb69c95806a419b54ffbe9e5b56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {fileID: 0}
+  thankful: 0
 --- !u!1 &6120104698764437806
 GameObject:
   m_ObjectHideFlags: 0

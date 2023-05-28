@@ -54,4 +54,12 @@ public class Door : MonoBehaviour, IInteractable
     {
         text.gameObject.SetActive(false);
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("test");
+        }
+    }
+
 }

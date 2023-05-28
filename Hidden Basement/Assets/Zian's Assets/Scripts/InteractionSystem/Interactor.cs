@@ -137,7 +137,6 @@ public class Interactor : MonoBehaviour
         //     if(hit.collider != null)
         //    {
         //        Debug.Log(hit.collider.name);
-        //        Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
         //        if(hit.collider.GetComponent<Item>())
         //        {
         //            Debug.Log("Its a book");
@@ -145,10 +144,6 @@ public class Interactor : MonoBehaviour
         //            inHandItem.transform.position = Vector3.zero;
         //            inHandItem.transform.rotation = Quaternion.identity;
         //            inHandItem.transform.SetParent(pickUpParent.transform, false);
-        //            if(rb != null)
-        //            {
-        //                rb.isKinematic = true;
-        //            }
         //            return;
         //        }
         //    }
