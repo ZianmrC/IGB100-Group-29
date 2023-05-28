@@ -77,9 +77,13 @@ public class Interactor : MonoBehaviour
                 {
                     promptText.text = "Press 'e' to open door";
                 }
-                else if(interactableObject.name == "Book")
+                else if (interactableObject.name == "Book")
                 {
                     promptText.text = "Press 'e' to pick up book";
+                }
+                else if (interactableObject.name == "HealthPack")
+                {
+                    promptText.text = "Press 'e' to restore health";
                 }
 
                 if (_interactable != null)

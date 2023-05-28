@@ -24,6 +24,9 @@ public class EnemyHp : MonoBehaviour, IInteractable
     public string InterationPrompt => _prompt;
     public GameObject InteractableGameObject => gameObject;
 
+    private GameObject player;
+    PlayerHealth playerHealth;
+
     private void Start()
     {
         health = maxHealth;
@@ -31,6 +34,9 @@ public class EnemyHp : MonoBehaviour, IInteractable
         audioNormal = music.GetComponents<AudioSource>()[0];
         audioDetected = music.GetComponents<AudioSource>()[1];
         screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
+
+        player = GameObject.Find("Capsule");
+        playerHealth = player.GetComponent<PlayerHealth>();
 
         // Get references to all child objects
         foreach (Transform child in enemy.transform)
@@ -89,6 +95,7 @@ public class EnemyHp : MonoBehaviour, IInteractable
         if (other.CompareTag("Bullet"))
         {
             takeDamage(1.0f);
+            playerHealth.currentHealth++;
             Debug.Log("Hit!");
         }
     }        

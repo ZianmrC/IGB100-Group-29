@@ -56,11 +56,15 @@ public class PlayerHealth : MonoBehaviour
 
         // Check if enough time has elapsed since last health regeneration
         timeSinceLastRegen += Time.deltaTime;
-        if (timeSinceLastRegen >= healthRegen && currentHealth < maxHealth)
+        if (timeSinceLastRegen >= healthRegen)
         {
             RegenerateHealth();
             timeSinceLastRegen = 0.0f;
             if( currentHealth > maxHealth) currentHealth = maxHealth;
+        }
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 
@@ -119,6 +123,5 @@ public class PlayerHealth : MonoBehaviour
     void RegenerateHealth()
     {
         currentHealth++;
-        healthBar.Sethealth(currentHealth);
     }
 }
