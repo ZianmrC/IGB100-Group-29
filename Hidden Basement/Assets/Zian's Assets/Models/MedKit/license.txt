@@ -1,0 +1,11 @@
+Model Information:
+* title:	MedKit
+* source:	https://sketchfab.com/3d-models/medkit-9aee295bd7dd4b1fb90516235ee73b35
+* author:	ItsEBtPGyt (https://sketchfab.com/ItsEBtPGyt)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MedKit" (https://sketchfab.com/3d-models/medkit-9aee295bd7dd4b1fb90516235ee73b35) by ItsEBtPGyt (https://sketchfab.com/ItsEBtPGyt) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

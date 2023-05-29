@@ -23,13 +23,12 @@ public class PlayerHealth : MonoBehaviour
     //Variables to disable once the player dies
     private GameObject playerCamera;
     private GameObject playerCapsule;
-    private GameObject gun;
+    public GameObject gun;
     CharacterController characterController;
     void Start()
     {
         playerCamera = GameObject.Find("PlayerFollowCamera");
         playerCapsule = GameObject.Find("PlayerCapsule");
-        gun = GameObject.Find("M1911 Handgun_Silver");
         characterController = playerCapsule.GetComponent<CharacterController>();
         fadeOverlay.gameObject.SetActive(false);
         currentHealth = maxHealth;
@@ -56,11 +55,15 @@ public class PlayerHealth : MonoBehaviour
 
         // Check if enough time has elapsed since last health regeneration
         timeSinceLastRegen += Time.deltaTime;
-        if (timeSinceLastRegen >= healthRegen && currentHealth < maxHealth)
+        if (timeSinceLastRegen >= healthRegen)
         {
             RegenerateHealth();
             timeSinceLastRegen = 0.0f;
             if( currentHealth > maxHealth) currentHealth = maxHealth;
+        }
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 
@@ -119,6 +122,5 @@ public class PlayerHealth : MonoBehaviour
     void RegenerateHealth()
     {
         currentHealth++;
-        healthBar.Sethealth(currentHealth);
     }
 }

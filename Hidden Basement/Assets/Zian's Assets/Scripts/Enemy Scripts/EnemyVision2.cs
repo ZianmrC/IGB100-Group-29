@@ -106,6 +106,7 @@ public class EnemyVision2 : MonoBehaviour
             lastKnownPosition = player.transform.position; // Update lastKnownPosition
             if (NormalAudio == true)
             {
+                Debug.Log("test1");
                 audioNormal.enabled = false;
                 audioDetected.enabled = true;
                 NormalAudio = false;

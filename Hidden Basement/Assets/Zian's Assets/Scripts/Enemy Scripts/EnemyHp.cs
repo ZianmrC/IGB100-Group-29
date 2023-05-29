@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyHp : MonoBehaviour, IInteractable
 {
+    public AudioClip[] dialogues;
+    public AudioSource audioSource;
     public float maxHealth;
     private float health;
     public GameObject deathEffect;
@@ -24,13 +26,20 @@ public class EnemyHp : MonoBehaviour, IInteractable
     public string InterationPrompt => _prompt;
     public GameObject InteractableGameObject => gameObject;
 
+    private GameObject player;
+    PlayerHealth playerHealth;
+
     private void Start()
     {
         health = maxHealth;
         music = GameObject.Find("Music");
         audioNormal = music.GetComponents<AudioSource>()[0];
         audioDetected = music.GetComponents<AudioSource>()[1];
+        audioSource = GetComponent<AudioSource>();
         screenFlash = GameObject.Find("FlashImage")?.GetComponent<Image>();
+
+        player = GameObject.Find("Capsule");
+        playerHealth = player.GetComponent<PlayerHealth>();
 
         // Get references to all child objects
         foreach (Transform child in enemy.transform)
@@ -48,12 +57,18 @@ public class EnemyHp : MonoBehaviour, IInteractable
     public void takeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0.0f)
+        if (health <= 0.0f && Phase1Enemy == true)
         {
             // Disable child objects
             DisableChildObjects();
-
+            
             Instantiate(deathEffect, transform.position, transform.rotation);
+            //Play dialogue
+            int randomIndex = Random.Range(0, dialogues.Length);
+            AudioClip selectedDialogue = dialogues[randomIndex];
+            audioSource.clip = selectedDialogue;
+            audioSource.Play();
+            /*
             if (EnemyVision2.isScreenFlashRunning == true)
             {
                 screenFlash.enabled = false;
@@ -65,12 +80,36 @@ public class EnemyHp : MonoBehaviour, IInteractable
                 audioNormal.enabled = true;
                 EnemyVision2.NormalAudio = true;
             }
+            */
             if (Phase1Enemy == true)
             {
                 health = maxHealth;
                 gameObject.SetActive(true);
                 StartCoroutine(RespawnTimer());
             }
+        }
+        else if(Phase1Enemy == false)
+        {
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            //Play dialogue
+            int randomIndex = Random.Range(0, dialogues.Length);
+            AudioClip selectedDialogue = dialogues[randomIndex];
+            audioSource.clip = selectedDialogue;
+            audioSource.Play();
+            Debug.Log("audioplayed");
+            DisableChildObjects();
+            Invoke("DestroyObject", 1f);
+        }
+        if (EnemyVision2.isScreenFlashRunning == true)
+        {
+            screenFlash.enabled = false;
+            EnemyVision2.isScreenFlashRunning = false;
+        }
+        if (EnemyVision2.NormalAudio == false)
+        {
+            audioDetected.enabled = false;
+            audioNormal.enabled = true;
+            EnemyVision2.NormalAudio = true;
         }
     }
 
@@ -83,12 +122,17 @@ public class EnemyHp : MonoBehaviour, IInteractable
             child.gameObject.SetActive(false);
         }
     }
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
             takeDamage(1.0f);
+            playerHealth.currentHealth++;
             Debug.Log("Hit!");
         }
     }        

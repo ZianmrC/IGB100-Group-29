@@ -20,6 +20,8 @@ public class ItemCounter : MonoBehaviour
     }
     private void Start()
     {
+        key = 0;
+        keyint = 0;
         keycount = PlayerPrefs.GetInt("Key " + "/6", 0);
         keyText.text = "Keys " + key.ToString() + "/6";
         //keyCountText.text = "Key: " + keycount.ToString() + "/5";

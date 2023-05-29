@@ -31,20 +31,27 @@ public class TriggerEscapePhase : MonoBehaviour
         gun = GameObject.Find("M1911 Handgun_Silver");
         if (secondPhase == true)
         {
-            Trigger2ndPhase(true);
+            Trigger2ndPhase();
             //Debug.Log("test1");
         }
         else
         {
-            Trigger2ndPhase(false);
+            reticle.enabled = false;
+            Spawner.SetActive(false);
+            escape1.SetActive(false);
+            escape2.SetActive(false);
+            objective.text = "Find all 6 Keys scattered across the 2 top floors";
+            hostageScript.thankful = false;
+            gun.SetActive(false);
             //Debug.Log("test2");
         }
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == triggerObject.gameObject.name && Door.doorUnlocked == true)
         {
-            Trigger2ndPhase(true);
+            Trigger2ndPhase();
         }
         else if(ItemCounter.key <6 || Door.doorUnlocked == false)
         {
@@ -60,23 +67,31 @@ public class TriggerEscapePhase : MonoBehaviour
         }
         else DeactivateTooltip();
     }
-    private void Trigger2ndPhase(bool yesorno)
-    {
-        reticle.enabled = yesorno;
-        Spawner.SetActive(yesorno);
-        escape1.SetActive(yesorno);
-        escape2.SetActive(yesorno);
-        if (yesorno == true)
-        {
-            objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
-            hostageScript.thankful = true;
-        }
-        gun.SetActive(yesorno);
 
+    public void Trigger2ndPhase()
+    {
+        if (secondPhase == false) //If 2ndPhase variable is set to false, invoke code after delay
+        {
+            Invoke("DelayedExecution", 10f);
+            hostageScript.PlayRandomDialogue();
+        }
+        else
+        {
+            DelayedExecution();
+        }
     }
     private void DeactivateTooltip()
     {
         tooltip.gameObject.SetActive(false);
+    }
+    void DelayedExecution()
+    {
+        reticle.enabled = true;
+        Spawner.SetActive(true);
+        escape1.SetActive(true);
+        escape2.SetActive(true);
+        objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
+        gun.SetActive(true);
     }
 
 }
