@@ -12,19 +12,15 @@ public class Door : MonoBehaviour, IInteractable
     SceneSwitcher sceneSwitcher;
 
     public string InterationPrompt => _prompt;
-    public GameObject text;
-    public GameObject Spawner;
-    public TMP_Text objective;
-    public GameObject gun;
+    public Text text;
+    public TextMeshProUGUI objective;
 
-    //Win Conditions
-    public GameObject escape1;
-    public GameObject escape2;
+    public static bool doorUnlocked; //Boolean to represent if the door has been unlocked
 
     void Start()
     {
-        gun.SetActive(false);
-        text.SetActive(false);
+        doorUnlocked = false;
+        text.gameObject.SetActive(false);
     }
     public bool Interact(Interactor interactor)
     {
@@ -36,30 +32,34 @@ public class Door : MonoBehaviour, IInteractable
         {
             //_prompt = "Door is unlocked. press E to open";
             Destroy(gameObject);
-            /*
-            Spawner.SetActive(true);
-            escape1.SetActive(true);
-            escape2.SetActive(true);
-            */
-            objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
-            /*
+            
             var sceneSwitcher = FindObjectOfType<SceneSwitcher>();
             if (sceneSwitcher != null)
             {
                 sceneSwitcher.sceneToLoad = "MissionCompleteScreen";
                 sceneSwitcher.LoadScene();
             }
-            */
+            objective.text = "Free the Hostage";
+            doorUnlocked = true;
             return true;
 
         }
-        text.SetActive(true);
-        Invoke("SetInactive", 5f);
+        text.gameObject.SetActive(true);
+        text.text = $"Missing {6 - ItemCounter.key} out of 6 keys, keep searching the floors above";
+        Invoke("SetActive", 5f);
         return false;
         
     }
-    public void SetInactive()
+    public void SetActive()
     {
-        text.SetActive(false);
+        text.gameObject.SetActive(false);
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("test");
+        }
+    }
+
 }

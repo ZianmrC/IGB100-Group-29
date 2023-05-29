@@ -216,7 +216,7 @@
             {
                 "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "smoothing.PreviewOpacity",
-                "value": "{\"m_Value\":0.32600000500679018}"
+                "value": "{\"m_Value\":0.057999998331069949}"
             },
             {
                 "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -241,7 +241,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize",
-                "value": "{\"m_Value\":{\"x\":-1.052734375,\"y\":3.972288131713867,\"z\":-5.8290557861328129}}"
+                "value": "{\"m_Value\":{\"x\":0.8499183654785156,\"y\":1.1648688316345215,\"z\":2.9606094360351564}}"
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",

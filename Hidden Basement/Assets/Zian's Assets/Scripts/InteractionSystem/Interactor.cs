@@ -77,6 +77,14 @@ public class Interactor : MonoBehaviour
                 {
                     promptText.text = "Press 'e' to open door";
                 }
+                else if (interactableObject.name == "Book")
+                {
+                    promptText.text = "Press 'e' to pick up book";
+                }
+                else if (interactableObject.name == "HealthPack")
+                {
+                    promptText.text = "Press 'e' to restore health";
+                }
 
                 if (_interactable != null)
                 {
@@ -127,6 +135,27 @@ public class Interactor : MonoBehaviour
             promptText.text = "";
             return;
         }
+
+        //if(Keyboard.current.eKey.wasPressedThisFrame)
+        //{
+        //     if(hit.collider != null)
+        //    {
+        //        Debug.Log(hit.collider.name);
+        //        if(hit.collider.GetComponent<Item>())
+        //        {
+        //            Debug.Log("Its a book");
+        //            inHandItem = hit.collider.gameObject;
+        //            inHandItem.transform.position = Vector3.zero;
+        //            inHandItem.transform.rotation = Quaternion.identity;
+        //            inHandItem.transform.SetParent(pickUpParent.transform, false);
+        //            return;
+        //        }
+        //    }
+        //     else
+        //    {
+        //        return;
+        //    }
+        //}
     }
 
     private void OnDrawGizmos()
