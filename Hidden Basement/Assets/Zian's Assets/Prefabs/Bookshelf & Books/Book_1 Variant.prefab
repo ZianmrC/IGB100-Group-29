@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.645
+      value: 42.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.031
+      value: 1.1474651
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.21
+      value: -63.341114
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_Name
-      value: Book_1
+      value: Book_1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 198cfaef0d5de5c4fb0fbfc00e5d4ab4, type: 3}
       propertyPath: m_Layer
@@ -111,6 +111,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0033986282, y: 0.0047025606, z: 0.0007795134}
   m_Center: {x: -0.0002031407, y: 2.2860362e-14, z: 6.054091e-11}
+--- !u!114 &251274199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918812654868973559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f2c790d826564eb91b86cf7eda6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theDest: {fileID: 0}
 --- !u!114 &7642188321775341291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,3 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23963a924211fe47a5e2fb776395a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inHandItem: {fileID: 0}
+  pickUpParent: {fileID: 0}

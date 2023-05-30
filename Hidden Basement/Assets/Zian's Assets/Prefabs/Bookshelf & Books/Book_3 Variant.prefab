@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: 46.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.031
+      value: 2.934
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.21
+      value: -62.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_LocalRotation.w
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_Name
-      value: Book_3
+      value: Book_3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_Layer
@@ -74,6 +74,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
+      propertyPath: m_TagString
+      value: Book 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b6d20d21476504e84978b1b9412e94, type: 3}
@@ -123,3 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23963a924211fe47a5e2fb776395a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inHandItem: {fileID: 0}
+  pickUpParent: {fileID: 0}
+--- !u!114 &13361957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6884287706452200133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f2c790d826564eb91b86cf7eda6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theDest: {fileID: 0}
