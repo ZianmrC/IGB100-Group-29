@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    Transform camGFX;
+
     bool startNextRotation = true;
     public bool rotRight;
 
     public float yaw;
+    public float pitch;
 
     public float secondsToRot;
+
+    public float rotSwitchTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        camGFX = transform.GetChild(0);
+        camGFX.localRotation = Quaternion.AngleAxis(pitch, Vector3.right);
+
         SetUpStartRotation();
     }
 
@@ -45,7 +53,7 @@ public class CameraMove : MonoBehaviour
             yield return null;
         }
 
-        //yield return new WaitForSeconds();
+        yield return new WaitForSeconds(rotSwitchTime);
 
         startNextRotation = true;
         rotRight = !rotRight;
