@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour, //IInteractable
+public class PickUp : MonoBehaviour //IInteractable
 {
     public Transform theDest;
 
