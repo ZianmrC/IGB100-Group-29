@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZianMainLvl.unity
     guid: 35475d68a468cfb49a987dce277c2bd8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainLevel.unity
     guid: 1fecac123a727f84e9246cd61d88689d
   - enabled: 1

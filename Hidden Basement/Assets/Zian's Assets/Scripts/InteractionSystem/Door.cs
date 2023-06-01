@@ -31,7 +31,7 @@ public class Door : MonoBehaviour, IInteractable
         if(inventory.HasBlueKey && inventory.HasRedKey && inventory.HasYellowKey && inventory.HasGreenKey && inventory.HasPurpleKey && inventory.HasBlackKey)
         {
             //_prompt = "Door is unlocked. press E to open";
-            Destroy(gameObject);
+            Destroy(this.gameObject);
             
             var sceneSwitcher = FindObjectOfType<SceneSwitcher>();
             if (sceneSwitcher != null)
