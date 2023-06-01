@@ -121,6 +121,6 @@ public class PlayerHealth : MonoBehaviour
     }
     void RegenerateHealth()
     {
-        currentHealth++;
+        //currentHealth++;
     }
 }

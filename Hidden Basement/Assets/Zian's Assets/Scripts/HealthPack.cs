@@ -10,14 +10,12 @@ public class HealthPack : MonoBehaviour, IInteractable
     public GameObject InteractableGameObject => gameObject;
     private GameObject player;
     PlayerHealth playerHealth;
-    private GameObject textObject;
-    private Text text;
+    public GameObject textObject;
+    public Text text;
 
     // Start is called before the first frame update
     void Start()
     {
-        textObject = GameObject.Find("TooltipText");
-        text = textObject.GetComponent<Text>();
         player = GameObject.Find("Capsule");
         playerHealth = player.GetComponent<PlayerHealth>();
         textObject.SetActive(true);

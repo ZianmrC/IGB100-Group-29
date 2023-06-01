@@ -39,7 +39,7 @@ public class Door : MonoBehaviour, IInteractable
                 sceneSwitcher.sceneToLoad = "MissionCompleteScreen";
                 sceneSwitcher.LoadScene();
             }
-            objective.text = "Free the Hostage";
+            objective.text = "Find a way to open the door. (That bookshelf looks kinda interesting)";
             doorUnlocked = true;
             return true;
 

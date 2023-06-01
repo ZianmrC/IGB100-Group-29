@@ -72,8 +72,8 @@ public class TriggerEscapePhase : MonoBehaviour
     {
         if (secondPhase == false) //If 2ndPhase variable is set to false, invoke code after delay
         {
-            Invoke("DelayedExecution", 10f);
-            hostageScript.PlayRandomDialogue();
+            float delay = hostageScript.PlayRandomDialogue();
+            Invoke("DelayedExecution", delay);
         }
         else
         {
@@ -90,7 +90,7 @@ public class TriggerEscapePhase : MonoBehaviour
         Spawner.SetActive(true);
         escape1.SetActive(true);
         escape2.SetActive(true);
-        objective.text = "Escape!\nFind a random cube and walk into it (Placeholder)";
+        objective.text = "Escape through the front gate!";
         gun.SetActive(true);
     }
 
