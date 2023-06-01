@@ -73,6 +73,10 @@ public class Interactor : MonoBehaviour
                 {
                     promptText.text = "Press 'e' to pick up key";
                 }
+                else if(interactableObject.name.Contains("Book"))
+                {
+                    promptText.text = "Press 'e' to pick up book";
+                }
                 else if (interactableObject.name == "Door")
                 {
                     promptText.text = "Press 'e' to open door";

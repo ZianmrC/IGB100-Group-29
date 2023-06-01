@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 
 public class PickUpScript : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private TextMeshProUGUI itemNameText;
+    /*
+    public GameObject InteractableGameObject => gameObject;
 
-
-    private ContextMenuItemAttribute itemBeingPickedUp;
-
-    private void Update()
+    public bool Interact(Interactor interactor)
     {
-        //SelectItemBeingPickedUpFromRay();
+        var holding = GameObject.FindObjectOfType<PickUp>();
+        if (holding)
+        {
+            this.transform.parent = null;
+            GetComponent<Rigidbody>().useGravity = true;
+            //GetComponent<BoxCollider>().enabled = true;
+            holding.holding = false;
 
-        //if (HasItemTargetted())
-        //{
-           // if()
-        //}
-    }
+        }
+        return true;
+    }*/
 }
